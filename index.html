@@ -20,7 +20,11 @@ a{color:#355F84}a:hover{color:#0D1116}
 summary{cursor:pointer}
 .site-nav{position:sticky;top:0;z-index:50}
 section[id]{scroll-margin-top:96px}
-@media (max-width: 900px){.site-nav{position:static}}
+.nav-mobile{display:none}
+.nav-mobile summary{list-style:none}
+.nav-mobile summary::-webkit-details-marker{display:none}
+.nav-mobile[open] .ic-open,.nav-mobile:not([open]) .ic-close{display:none}
+@media (max-width: 1100px){.nav-desktop{display:none!important}.nav-mobile{display:block}}
 @media (max-width: 900px){.mh-gate{display:none}.mh-scrim{background:rgba(11,15,24,0.82)!important}}
 </style>
 </head>
@@ -36,14 +40,29 @@ section[id]{scroll-margin-top:96px}
 <a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0D1116">
 <img src="assets/brand/moldaid-logo-horizontal-light-bg.svg" alt="MoldAid" style="display: block; height: 32px; width: auto; background: #F4F1EA">
 </a>
-<nav style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase">
+<nav class="nav-desktop" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase">
 <a href="#how" style="color: #0D1116; text-decoration: none; padding: 12px 0">How it works</a>
 <a href="#who" style="color: #0D1116; text-decoration: none; padding: 12px 0">Use cases</a>
 <a href="#need" style="color: #0D1116; text-decoration: none; padding: 12px 0">What you need</a>
 <a href="#resources" style="color: #0D1116; text-decoration: none; padding: 12px 0">Resources</a>
 <a href="#faq" style="color: #0D1116; text-decoration: none; padding: 12px 0">FAQ</a>
 </nav>
-<a href="waitlist.html" style="background: #355F84; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px; padding: 13px 22px; border-radius: 8px">Join the beta waitlist</a>
+<a class="nav-desktop" href="waitlist.html" style="background: #355F84; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px; padding: 13px 22px; border-radius: 8px">Join the beta waitlist</a>
+<details class="nav-mobile">
+<summary style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; border: 1px solid #0D1116; border-radius: 8px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #0D1116">
+<svg class="ic-open" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" fill="none" stroke="#0D1116" stroke-width="1.8" stroke-linecap="round"/></svg>
+<svg class="ic-close" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="#0D1116" stroke-width="1.8" stroke-linecap="round"/></svg>
+<span>Menu</span>
+</summary>
+<nav aria-label="Main" style="position: absolute; left: 0; right: 0; top: 100%; background: #F4F1EA; border-bottom: 1px solid #0D1116; padding: 4px clamp(20px, 5vw, 80px) 24px; box-shadow: 0 16px 32px rgba(11, 15, 24, 0.12); font-family: 'IBM Plex Mono', monospace; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase">
+<a href="#how" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">How it works</a>
+<a href="#who" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">Use cases</a>
+<a href="#need" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">What you need</a>
+<a href="#resources" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">Resources</a>
+<a href="#faq" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">FAQ</a>
+<a href="waitlist.html" style="display: block; margin-top: 20px; background: #355F84; color: #FFFFFF; text-decoration: none; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 0; text-transform: none; text-align: center; padding: 15px 22px; border-radius: 8px">Join the beta waitlist</a>
+</nav>
+</details>
 </div>
 </header>
 
@@ -279,5 +298,6 @@ section[id]{scroll-margin-top:96px}
 </footer>
 
 </div>
+<script>document.querySelectorAll(".nav-mobile nav a").forEach(function(a){a.addEventListener("click",function(){a.closest("details").removeAttribute("open")})});</script>
 </body>
 </html>
