@@ -53,8 +53,7 @@ section[id]{scroll-margin-top:96px}
 <a href="#how" style="color: #0D1116; text-decoration: none; padding: 12px 0">How it works</a>
 <a href="#who" style="color: #0D1116; text-decoration: none; padding: 12px 0">Use cases</a>
 <a href="#need" style="color: #0D1116; text-decoration: none; padding: 12px 0">What you need</a>
-<a href="#resources" style="color: #0D1116; text-decoration: none; padding: 12px 0">Resources</a>
-<a href="#team" style="color: #0D1116; text-decoration: none; padding: 12px 0">Team</a>
+<a href="#pricing" style="color: #0D1116; text-decoration: none; padding: 12px 0">Pricing</a>
 <a href="#faq" style="color: #0D1116; text-decoration: none; padding: 12px 0">FAQ</a>
 </nav>
 <a class="nav-desktop" href="waitlist.html" style="background: #355F84; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px; padding: 13px 22px; border-radius: 8px">Join the beta waitlist</a>
@@ -68,8 +67,7 @@ section[id]{scroll-margin-top:96px}
 <a href="#how" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">How it works</a>
 <a href="#who" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">Use cases</a>
 <a href="#need" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">What you need</a>
-<a href="#resources" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">Resources</a>
-<a href="#team" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">Team</a>
+<a href="#pricing" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">Pricing</a>
 <a href="#faq" style="display: block; color: #0D1116; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #CFC8B8">FAQ</a>
 <a href="waitlist.html" style="display: block; margin-top: 20px; background: #355F84; color: #FFFFFF; text-decoration: none; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 0; text-transform: none; text-align: center; padding: 15px 22px; border-radius: 8px">Join the beta waitlist</a>
 </nav>
@@ -80,7 +78,20 @@ section[id]{scroll-margin-top:96px}
 <!-- Hero -->
 <section id="top" style="position: relative">
 <div style="position: relative; min-height: 780px; background: #0B0F18; overflow: hidden; display: flex; align-items: center; padding: 96px clamp(20px, 5vw, 80px) 152px; box-sizing: border-box">
-<img src="assets/img/molds-and-parts.jpg" alt="Blue 3D printed resin mold halves with the clear and white parts molded in them" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 75% 55%">
+<img id="hero-mold-image" src="assets/img/pvc-1.jpg" alt="3D printed mold and molded part" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%">
+<script>
+(function(){
+var heroImages=[
+{src:"assets/img/pvc-1.jpg",position:"72% 50%",alt:"White 3D printed mold and clear molded part"},
+{src:"assets/img/molds-and-parts.jpg",position:"75% 55%",alt:"Blue 3D printed resin mold halves with clear and white parts"}
+];
+var hero=document.getElementById("hero-mold-image");
+var selected=heroImages[Math.floor(Math.random()*heroImages.length)];
+hero.src=selected.src;
+hero.style.objectPosition=selected.position;
+hero.alt=selected.alt;
+})();
+</script>
 <div class="mh-scrim" aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 15, 24, 0.94) 0%, rgba(11, 15, 24, 0.82) 34%, rgba(11, 15, 24, 0.28) 62%, rgba(11, 15, 24, 0) 82%)"></div>
 <div class="mh-gate mh-pour" aria-hidden="true" style="position: absolute; top: 0; left: 66%; width: 84px; height: 58%; clip-path: polygon(0 0, 100% 0, 64% 100%, 36% 100%)"></div>
 <script>(function(){if(Math.random()<0.5){document.querySelectorAll(".mh-pour").forEach(function(el){el.style.setProperty("--pour-hi","#9DBFDD");el.style.setProperty("--pour-mid","#5B8FBA");el.style.setProperty("--pour","#3F749F");});}})();</script>
@@ -101,7 +112,7 @@ section[id]{scroll-margin-top:96px}
 <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); border: 1px solid #0D1116; border-radius: 8px; overflow: hidden; background: #F4F1EA; box-shadow: 0 18px 40px rgba(11, 15, 24, 0.18)">
 <div style="padding: 20px 24px; border-right: 1px solid #0D1116"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #5A6270">INPUT</div><div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 28px">STEP file</div></div>
 <div style="padding: 20px 24px; border-right: 1px solid #0D1116"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #5A6270">OUTPUT</div><div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 28px">STEP and STL mold</div></div>
-<div style="padding: 20px 24px; border-right: 1px solid #0D1116"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #5A6270">PRICE</div><div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 28px">From €99 per download</div></div>
+<div style="padding: 20px 24px; border-right: 1px solid #0D1116"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #5A6270">PRICE</div><div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 28px">From €149 per download</div></div>
 <div style="padding: 20px 24px"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #5A6270">STATUS</div><div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 28px; display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; background: #2F7A45; border-radius: 50%"></span>Private beta</div></div>
 </div>
 </div>
@@ -205,17 +216,17 @@ section[id]{scroll-margin-top:96px}
 </section>
 
 <!-- Pricing -->
-<section style="background: #0B0F18; color: #F4F1EA; padding: 88px clamp(20px, 5vw, 80px)">
+<section id="pricing" style="background: #0B0F18; color: #F4F1EA; padding: 88px clamp(20px, 5vw, 80px)">
 <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 40px; align-items: end">
 <div style="display: flex; flex-direction: column; gap: 8px">
 <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.12em; color: #A7B0BF">05 · PRICING · PAY PER USE</div>
-<div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(96px, 15vw, 208px); line-height: 0.82; color: #C98548">€99</div>
-<div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #A7B0BF">PER MOLD DOWNLOAD · EARLY-ACCESS PRICE</div>
+<div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(96px, 15vw, 208px); line-height: 0.82; color: #C98548">€149</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #A7B0BF">PER MOLD DOWNLOAD</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start">
-<h2 style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(36px, 4.4vw, 56px); line-height: 1">Pay per use. From €99 per mold download.</h2>
-<p style="margin: 0; font-size: 19px; color: #C5CCD8">This is the early-access price during the beta. Waitlist members get in first.</p>
-<a href="waitlist.html" style="background: #F4F1EA; color: #0D1116; text-decoration: none; font-weight: 600; padding: 16px 28px; border-radius: 8px">Join the beta waitlist</a>
+<h2 style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(36px, 4.4vw, 56px); line-height: 1">Pay per use. From €149 per mold download.</h2>
+<p style="margin: 0; font-size: 19px; color: #C5CCD8">Pay as you go - or choose one of our plans.</p>
+<a href="plans.html" style="background: #F4F1EA; color: #0D1116; text-decoration: none; font-weight: 600; padding: 16px 28px; border-radius: 8px">See our plans</a>
 </div>
 </div>
 </section>
@@ -299,7 +310,7 @@ As default, data is kept for 30 days. You can delete your files at any time, and
 <details style="border-bottom: 1px solid #0D1116; padding: 20px 0"><summary style="font-weight: 600; font-size: 19px">Do I need my own printer and molding machine?</summary><p style="margin: 12px 0 0; color: #3A424F">MoldAid is built for teams that print and mold in-house. If you don't have the equipment, tell us when you sign up and we'll help.</p></details>
 <details style="border-bottom: 1px solid #0D1116; padding: 20px 0"><summary style="font-weight: 600; font-size: 19px">Which file formats do you accept?</summary><p style="margin: 12px 0 0; color: #3A424F">You upload a STEP file and download the mold as STEP and STL. Part size is limited only by your printer.</p></details>
 <details style="border-bottom: 1px solid #0D1116; padding: 20px 0"><summary style="font-weight: 600; font-size: 19px">Can I use my own resin?</summary><p style="margin: 12px 0 0; color: #3A424F">Yes. Add your resin's data and MoldAid uses it for the flow check and cost estimate. Two resins are built in if you don't have your own.</p></details>
-<details style="border-bottom: 1px solid #0D1116; padding: 20px 0"><summary style="font-weight: 600; font-size: 19px">What does it cost?</summary><p style="margin: 12px 0 0; color: #3A424F">You pay per mold you download. The early-access price is from €99 per download.</p></details>
+<details style="border-bottom: 1px solid #0D1116; padding: 20px 0"><summary style="font-weight: 600; font-size: 19px">What does it cost?</summary><p style="margin: 12px 0 0; color: #3A424F">You pay per mold you download - or by subscription. See our <a href="plans.html">plans</a>.</p></details>
 <details style="border-bottom: 1px solid #0D1116; padding: 20px 0"><summary style="font-weight: 600; font-size: 19px">What happens to my CAD files?</summary><p style="margin: 12px 0 0; color: #3A424F">They stay yours. We only access them, or use them for training or statistics, with your explicit permission. See our <a href="privacy.html">privacy policy</a>.</p></details>
 </div>
 </div>
@@ -322,7 +333,7 @@ As default, data is kept for 30 days. You can delete your files at any time, and
 <!-- Footer -->
 <footer style="background: #0B0F18; border-top: 1px solid #2A3345; padding: 32px clamp(20px, 5vw, 80px)">
 <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px 48px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #A7B0BF">
-<span>MoldAid · [Company name] · CVR [number]</span>
+<span>MoldAid ApS · CVR DK12121212</span>
 <div style="margin-left: auto; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 24px"><a href="terms.html" style="color: #C5CCD8">Terms</a><a href="privacy.html" style="color: #C5CCD8">Privacy</a><a href="contact.html" style="color: #C5CCD8">Contact</a></div>
 </div>
 </footer>
