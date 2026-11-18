@@ -18,6 +18,9 @@
 body{margin:0;background:#F4F1EA}
 a{color:#355F84}a:hover{color:#0D1116}
 summary{cursor:pointer}
+.site-nav{position:sticky;top:0;z-index:50}
+section[id]{scroll-margin-top:96px}
+@media (max-width: 900px){.site-nav{position:static}}
 @media (max-width: 900px){.mh-gate{display:none}.mh-scrim{background:rgba(11,15,24,0.82)!important}}
 </style>
 </head>
@@ -28,7 +31,7 @@ summary{cursor:pointer}
 <div style="background: #B97335; color: #0B0F18; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; text-align: center; padding: 10px 20px; letter-spacing: 0.02em">Private beta. Public release January 2027. <a href="waitlist.html" style="color: #0B0F18; text-decoration: underline">Join the waitlist</a></div>
 
 <!-- Nav -->
-<header style="padding: 18px clamp(20px, 5vw, 80px); border-bottom: 1px solid #0D1116">
+<header class="site-nav" style="padding: 18px clamp(20px, 5vw, 80px); border-bottom: 1px solid #0D1116; background: #F4F1EA">
 <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
 <a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0D1116">
 <img src="assets/brand/moldaid-logo-horizontal-light-bg.svg" alt="MoldAid" style="display: block; height: 32px; width: auto; background: #F4F1EA">
@@ -38,7 +41,6 @@ summary{cursor:pointer}
 <a href="#who" style="color: #0D1116; text-decoration: none; padding: 12px 0">Use cases</a>
 <a href="#need" style="color: #0D1116; text-decoration: none; padding: 12px 0">What you need</a>
 <a href="#resources" style="color: #0D1116; text-decoration: none; padding: 12px 0">Resources</a>
-<a href="#team" style="color: #0D1116; text-decoration: none; padding: 12px 0">Team</a>
 <a href="#faq" style="color: #0D1116; text-decoration: none; padding: 12px 0">FAQ</a>
 </nav>
 <a href="waitlist.html" style="background: #355F84; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px; padding: 13px 22px; border-radius: 8px">Join the beta waitlist</a>
