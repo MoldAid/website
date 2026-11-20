@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": false },
+    { "source": "/:page(waitlist|contact|terms|privacy|plans).html", "destination": "/:page", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/((?!assets/|.*\.).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive, noimageindex" }]
+    }
+  ]
+}

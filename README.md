@@ -1,24 +1,39 @@
 # MoldAid website
 
-Static beta site for MoldAid: the landing page and the waitlist page. Plain HTML with no build step.
+Beta site for MoldAid, built with React 19, TypeScript, Vite and React Router.
 
-| File | Page |
+## Run it
+
+```
+npm install
+npm run dev        # local dev server with hot reload
+npm run build      # type-check, then build to dist/
+npm run preview    # serve the built site locally
+npm run format     # Prettier on src/
+```
+
+## Structure
+
+| Path | What |
 |---|---|
-| `index.html` | Landing page |
-| `waitlist.html` | Waitlist sign-up |
-| `assets/img/` | Photos |
-| `assets/brand/` | Logo and mark (SVG) |
-| Favicons and `site.webmanifest` | Site root |
+| `src/main.tsx` | Entry point: router and global CSS |
+| `src/App.tsx` | Routes: `/`, `/waitlist`, `/contact`, `/terms`, `/privacy`, `/plans`, plus a 404 |
+| `src/components/` | Shared parts: `PageShell` (grid background, page title and description), `HomeHeader`, `SubpageHeader`, `SiteFooter`, `Announcement`, `YouTubeEmbed`, `ScrollManager` |
+| `src/pages/home/` | The front page, one file per section (`Hero`, `Problem`, `HowItWorks` ...) and `HomePage` that lines them up |
+| `src/pages/*Page.tsx` | The other pages |
+| `src/styles/global.css` | Rules shared by every page. Page-specific CSS sits next to its page |
+| `public/` | Served as-is: photos, logo, favicons, `robots.txt`, `site.webmanifest` |
+| `vercel.json` | Vite build, SPA fallback, redirects from the old `.html` URLs, noindex header |
 
-Fonts load from Google Fonts: Barlow Condensed, IBM Plex Sans and IBM Plex Mono.
+Styling is still mostly inline `style={{ }}` objects, carried over one-to-one from the static pages so nothing changed visually. Move repeated styles into shared components or CSS as the pages grow.
+
+Old links such as `/waitlist.html` redirect to `/waitlist`.
 
 ## Not finished yet
 
-- The waitlist form has no backend. The button does not submit anything.
+- The waitlist and contact forms have no backend. Submitting does nothing.
 - Text in square brackets, such as `[Portrait]` or `[Resin 1]`, is a placeholder waiting for real content.
-- Privacy, imprint and contact links point to anchors that do not exist yet.
-- `site.webmanifest` uses root paths (`/icon-192.png`), so the site should be served from the domain root.
 
 ## Search engines
 
-The site is hidden from search engines while in beta: `robots.txt` blocks all crawlers, and both pages carry `<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">`. Remove both before the public launch.
+The site is hidden from search engines while in beta: `public/robots.txt` blocks all crawlers, `index.html` carries `<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">`, and `vercel.json` sends the same as an `X-Robots-Tag` header. Remove all three before the public launch.

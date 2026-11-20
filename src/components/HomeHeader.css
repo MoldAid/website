@@ -1,0 +1,5 @@
+.nav-mobile{display:none}
+.nav-mobile summary{list-style:none}
+.nav-mobile summary::-webkit-details-marker{display:none}
+.nav-mobile[open] .ic-open,.nav-mobile:not([open]) .ic-close{display:none}
+@media (max-width: 1200px){.nav-desktop{display:none!important}.nav-mobile{display:block}}
