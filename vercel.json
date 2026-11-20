@@ -1,16 +1,16 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": false },
-    { "source": "/:page(waitlist|contact|terms|privacy|plans).html", "destination": "/:page", "permanent": false }
+    { "source": "/waitlist.html", "destination": "/waitlist", "permanent": false },
+    { "source": "/contact.html", "destination": "/contact", "permanent": false },
+    { "source": "/terms.html", "destination": "/terms", "permanent": false },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": false },
+    { "source": "/plans.html", "destination": "/plans", "permanent": false }
   ],
-  "rewrites": [
-    { "source": "/((?!assets/|.*\.).*)", "destination": "/index.html" }
-  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
       "source": "/(.*)",
