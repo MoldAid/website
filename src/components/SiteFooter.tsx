@@ -1,6 +1,8 @@
 import { Link } from 'react-router';
+import { useConsent } from '../lib/consent';
 
 export function SiteFooter() {
+  const { openSettings } = useConsent();
   return (
     <>
       <footer style={{ background: '#0B0F18', borderTop: '1px solid #2A3345', padding: '32px clamp(20px, 5vw, 80px)' }}>
@@ -38,6 +40,21 @@ export function SiteFooter() {
             <Link to="/contact" style={{ color: '#C5CCD8' }}>
               Contact
             </Link>
+            <button
+              type="button"
+              onClick={openSettings}
+              style={{
+                background: 'none',
+                border: 0,
+                padding: 0,
+                font: 'inherit',
+                color: '#C5CCD8',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+              }}
+            >
+              Cookie settings
+            </button>
           </div>
         </div>
       </footer>
