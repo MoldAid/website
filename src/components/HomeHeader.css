@@ -2,10 +2,10 @@
 .nav-mobile summary{list-style:none}
 .nav-mobile summary::-webkit-details-marker{display:none}
 .nav-mobile[open] .ic-open,.nav-mobile:not([open]) .ic-close{display:none}
-@media (max-width: 1339px){.nav-desktop{display:none!important}.nav-mobile{display:block}}
+@media (max-width: 1379px){.nav-desktop{display:none!important}.nav-mobile{display:block}}
 /* Topmenuen: almindelig tekst (versaler) med luft mellem punkterne og en blød baggrund ved hover (25-11-2026). */
 .main-menu{display:flex;align-items:center;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:17px;font-weight:500;text-transform:uppercase;letter-spacing:.03em}
-.main-menu a{position:relative;color:#0D1116;text-decoration:none;padding:10px 13px;border-radius:6px;white-space:nowrap;background:linear-gradient(#94592A,#94592A) top/100% 0% no-repeat;transition:background-size .35s cubic-bezier(0.3,0,0.3,1),color .2s ease .05s}
+.main-menu a{position:relative;color:#0D1116;text-decoration:none;padding:10px 17px;border-radius:6px;white-space:nowrap;background:linear-gradient(#94592A,#94592A) top/100% 0% no-repeat;transition:background-size .35s cubic-bezier(0.3,0,0.3,1),color .2s ease .05s}
 /* Hover og valgt: kobber fylder ovenfra og ned, som panelet i heroen. */
 .main-menu a:hover,.main-menu a.active{background-size:100% 100%;color:#FFFFFF}
 .main-menu a:focus-visible{outline:2px solid #3578C9;outline-offset:2px}
