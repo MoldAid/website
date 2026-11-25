@@ -30,8 +30,17 @@ export function OrderButton({ plan, billing }: { plan: Plan; billing: Billing })
   const { to, label, variant } = orderLink(plan, billing);
   return (
     <Link className={`plan-cta ${variant}`.trim()} to={to} aria-label={`${label} – ${plan.name}`}>
-      {label}
-      {label === 'Select & order' && <span aria-hidden="true">→</span>}
+      {label === 'Select & order' ? (
+        // Smalle kolonner må bryde linjen, men «order →» holdes samlet.
+        <span>
+          Select &amp;{' '}
+          <span style={{ whiteSpace: 'nowrap' }}>
+            order <span aria-hidden="true">→</span>
+          </span>
+        </span>
+      ) : (
+        label
+      )}
     </Link>
   );
 }
