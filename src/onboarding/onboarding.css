@@ -62,7 +62,7 @@
 .ob-code{display:flex;gap:10px}
 .ob-code input{width:56px;height:68px;box-sizing:border-box;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:28px;background:#F4F1EA;border:1px solid #5A6270;border-radius:8px;color:#0D1116}
 
-.ob-plans{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch}
+.ob-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
 .ob-plan{position:relative;display:flex;flex-direction:column;gap:18px;background:#FFFFFF;border:1px solid #0D1116;border-radius:8px;padding:28px 24px 24px;cursor:pointer}
 .ob-plan:has(input:checked){border:2px solid #94592A;padding:27px 23px 23px;box-shadow:0 18px 40px rgba(148,89,42,.18)}
 .ob-plan:has(input:focus-visible){outline:2px solid #3578C9;outline-offset:3px}
@@ -77,7 +77,7 @@
 .ob-feat li.off{color:#8B919B}.ob-feat li.off::before{content:"–";color:#8B919B}
 .ob-bar{position:sticky;bottom:0;background:#0D1116;color:#F4F1EA;padding:18px clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 
-@media (max-width: 1100px){.ob-plans{grid-template-columns:repeat(2,1fr)}}
+@media (max-width: 1000px){.ob-plans{grid-template-columns:1fr}}
 @media (max-width: 900px){
   .ob-two,.ob-two.wide-right{grid-template-columns:1fr;gap:40px}
   .ob-top{grid-template-columns:auto 1fr}

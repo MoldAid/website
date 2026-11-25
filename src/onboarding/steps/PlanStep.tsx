@@ -1,6 +1,6 @@
 import { Link, Navigate, useNavigate } from 'react-router';
 import { BillingToggle } from '../../components/BillingToggle';
-import { PLANS, eur, getPlan, quote, yearlyMonthly, type Plan, type PlanId } from '../../lib/pricing';
+import { EXTRA_SEAT, PLANS, eur, getPlan, quote, yearlyMonthly, type Plan, type PlanId } from '../../lib/pricing';
 import { OnboardingLayout } from '../OnboardingLayout';
 import { suggestedPlan, useOnboarding } from '../OnboardingContext';
 
@@ -14,7 +14,7 @@ function Price({ plan, yearly }: { plan: Plan; yearly: boolean }) {
       <div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', whiteSpace: 'nowrap' }}>
           <strong style={big}>{eur(yearlyMonthly(plan.price))}</strong>
-          <span style={{ fontSize: '15px', color: '#5A6270' }}>per month</span>
+          <span style={{ fontSize: '15px', color: '#5A6270' }}>per seat / month</span>
         </div>
         <div style={small}>
           <s>{eur(plan.price)}</s> · {eur(yearlyMonthly(plan.price) * 12)} billed yearly ·{' '}
@@ -49,7 +49,11 @@ export function PlanStep() {
 
   const yearly = data.billing === 'yearly';
   const selected = getPlan(data.plan);
-  const q = quote(selected, data.billing);
+  const q = quote(selected, data.billing, data.headcount);
+  const seatText =
+    q.extraSeats > 0
+      ? `${data.headcount} seats (${q.extraSeats} extra at ${eur(EXTRA_SEAT)} / month)`
+      : '1 seat';
   const suggested = suggestedPlan(data.headcount);
   const choosable = PLANS.filter((p) => p.id !== 'enterprise');
 
@@ -81,11 +85,11 @@ export function PlanStep() {
         : yearly
           ? {
               head: `${selected.name} · ${eur(q.subtotal)} / year`,
-              sub: `${eur(q.perMonth ?? 0)} a month · excl. VAT · billed yearly · you save ${eur(q.discount)}`,
+              sub: `${seatText} · excl. VAT · billed yearly · you save ${eur(q.discount)}`,
             }
           : {
               head: `${selected.name} · ${eur(q.subtotal)} / month`,
-              sub: 'excl. VAT · billed monthly · cancel any time',
+              sub: `${seatText} · excl. VAT · billed monthly · cancel any time`,
             };
 
   const footer = (
@@ -139,7 +143,7 @@ export function PlanStep() {
               {getPlan(suggested).name}. Every plan can be changed later.
             </p>
             <p style={{ margin: 0, fontSize: '15px' }}>
-              Prices in euro, excluding VAT. <Link to="/plans">Compare all features</Link>
+              Prices in euro, excluding VAT. <Link to="/plans">Compare plans</Link>
             </p>
           </div>
         </div>
@@ -178,13 +182,8 @@ export function PlanStep() {
               <p style={{ margin: 0, fontSize: '15px', color: '#3A424F', minHeight: '48px' }}>{p.blurb}</p>
               <div style={{ height: '1px', background: '#CFC8B8' }} />
               <ul className="ob-feat">
-                {p.features.map((f) => (
+                {p.highlights.map((f) => (
                   <li key={f}>{f}</li>
-                ))}
-                {p.missing?.map((f) => (
-                  <li key={f} className="off">
-                    {f}
-                  </li>
                 ))}
               </ul>
             </label>

@@ -1,12 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { BillingToggle } from '../components/BillingToggle';
-import { PLANS, type Billing } from '../lib/pricing';
-import { OrderButton, PlanHead } from './PlanHead';
 import { PageShell } from '../components/PageShell';
 import { SubpageHeader } from '../components/SubpageHeader';
 import { SiteFooter } from '../components/SiteFooter';
+import { BillingToggle } from '../components/BillingToggle';
+import { EXTRA_SEAT, INCLUDED, PLANS, eur, type Billing, type Plan } from '../lib/pricing';
+import { OrderButton, PlanHead } from './PlanHead';
 import './plans.css';
+
+const mono = "'IBM Plex Mono',monospace";
+const barlow = "'Barlow Condensed',sans-serif";
+const tag = { fontFamily: mono, fontSize: '12px', letterSpacing: '.1em', color: '#94592A' } as const;
+
+const LIMITS: { label: string; key: keyof Plan['limits'] }[] = [
+  { label: 'Molds', key: 'molds' },
+  { label: 'Storage of job files', key: 'storage' },
+  { label: 'Seats', key: 'seats' },
+];
 
 export function PlansPage() {
   const [billing, setBilling] = useState<Billing>('yearly');
@@ -14,7 +24,7 @@ export function PlansPage() {
   return (
     <PageShell
       title="Plans & Pricing · MoldAid"
-      description="Compare MoldAid plans, features and limits."
+      description="Compare MoldAid plans and limits. Every plan includes the full mold toolset."
       className="page-plans"
     >
       <SubpageHeader />
@@ -35,7 +45,7 @@ export function PlansPage() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '14px',
-                  fontFamily: "'IBM Plex Mono',monospace",
+                  fontFamily: mono,
                   fontSize: '13px',
                   letterSpacing: '.14em',
                   color: '#5A6270',
@@ -48,7 +58,7 @@ export function PlansPage() {
               <h1
                 style={{
                   margin: '0',
-                  fontFamily: "'Barlow Condensed',sans-serif",
+                  fontFamily: barlow,
                   fontWeight: '700',
                   fontSize: 'clamp(52px,7vw,88px)',
                   lineHeight: '.88',
@@ -59,16 +69,19 @@ export function PlansPage() {
             </div>
             <div style={{ borderLeft: '1px solid #0D1116', paddingLeft: '24px', color: '#3A424F' }}>
               <p style={{ margin: '0 0 12px' }}>
-                Compare the plans and limits currently available for the MoldAid product.
+                Every plan includes the full MoldAid toolset. The plans differ only in how many molds you make, how long
+                we keep your files and how many people use it.
               </p>
               <p style={{ margin: '0', fontSize: '15px' }}>
                 Prices are in euro (<b>€</b>), excluding VAT. Yearly prices are rounded down to whole euros.
               </p>
             </div>
           </div>
+
           <div style={{ marginBottom: '-24px' }}>
-            <BillingToggle value={billing} onChange={setBilling} />
+            <BillingToggle value={billing} onChange={setBilling} note={false} />
           </div>
+
           <div className="plan-scroll" role="region" aria-label="MoldAid plan comparison" tabIndex={0}>
             <div className="plans-table">
               <div className="plan-head" style={{ background: '#F4F1EA' }}></div>
@@ -76,152 +89,20 @@ export function PlansPage() {
                 <PlanHead key={p.id} plan={p} billing={billing} last={i === PLANS.length - 1} />
               ))}
               <div className="plan-group">Limits</div>
-              <div className="plan-feature">Molds</div>
-              <div className="plan-value">1</div>
-              <div className="plan-value">1</div>
-              <div className="plan-value">5</div>
-              <div className="plan-value">10</div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-feature">Storage of job files</div>
-              <div className="plan-value">No storage</div>
-              <div className="plan-value">No storage</div>
-              <div className="plan-value">1 month</div>
-              <div className="plan-value">3 months</div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Mold build & shell</div>
-              <div className="plan-feature">
-                Mold build: STEP + STL files, shell settings, architecture, shrinkage and cavity options
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Parting & cores</div>
-              <div className="plan-feature">Parting direction and surface, parting details and cores</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Frame & assembly</div>
-              <div className="plan-feature">Frame, chamfers, fuse mold pieces, locking pins, dowels and nut field</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Gating, runners & venting</div>
-              <div className="plan-feature">
-                Gate types and path, runner section, custom runner path, vents and vacuum
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Pins</div>
-              <div className="plan-feature">Metal pins, guide pins and ejector pins</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Flow check & analysis</div>
-              <div className="plan-feature">Flow check, thermal behavior, advisor, measurements and roughness</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Materials, printers & machines</div>
-              <div className="plan-feature">
-                Own materials and datasheets, own printers, printer compensation and molding machines
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Print & cost</div>
-              <div className="plan-feature">Print setup and requests, cost estimates and resin prices</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Sharing & account</div>
-              <div className="plan-feature">Design sharing, viewer-paid downloads and two-factor login</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">–</div>
-              <div className="plan-value" style={{ color: '#94592A', fontSize: '22px', fontWeight: '700' }}>
-                ✓
-              </div>
-              <div className="plan-value">By quote</div>
-              <div className="plan-group">Add-ons & discounts</div>
-              <div className="plan-feature">
-                Resins, frames, printers and accessories, IM materials, referrals and sharing discounts
-              </div>
-              <div className="plan-value">Not decided</div>
-              <div className="plan-value">Not decided</div>
-              <div className="plan-value">Not decided</div>
-              <div className="plan-value">Not decided</div>
-              <div className="plan-value">By quote</div>
+              {LIMITS.map((row) => [
+                <div key={row.key} className="plan-feature">
+                  {row.label}
+                </div>,
+                ...PLANS.map((p, i) => (
+                  <div
+                    key={`${row.key}-${p.id}`}
+                    className="plan-value"
+                    style={i === PLANS.length - 1 ? { borderRight: 0 } : undefined}
+                  >
+                    {p.limits[row.key]}
+                  </div>
+                )),
+              ])}
               <div className="plan-order" style={{ fontWeight: 600, alignItems: 'center' }}>
                 Ready? Pick a plan.
               </div>
@@ -232,61 +113,82 @@ export function PlansPage() {
               ))}
             </div>
           </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,280px),1fr))',
-              gap: '24px',
-            }}
-          >
-            <div style={{ border: '1px solid #CFC8B8', borderRadius: '8px', background: '#FFFFFF', padding: '24px' }}>
-              <div
-                style={{
-                  fontFamily: "'IBM Plex Mono',monospace",
-                  fontSize: '12px',
-                  letterSpacing: '.1em',
-                  color: '#94592A',
-                  marginBottom: '8px',
-                }}
-              >
-                PAY-PER-USE
-              </div>
-              <p style={{ margin: '0' }}>€149 per mold download. Pay-per-use includes no job-file storage.</p>
+
+          <section aria-labelledby="included-h" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                gap: '16px',
+                borderTop: '2px solid #0D1116',
+                paddingTop: '12px',
+                fontFamily: mono,
+                fontSize: '13px',
+                letterSpacing: '.12em',
+                color: '#5A6270',
+              }}
+            >
+              <span>INCLUDED IN EVERY PLAN</span>
             </div>
-            <div style={{ border: '1px solid #CFC8B8', borderRadius: '8px', background: '#FFFFFF', padding: '24px' }}>
-              <div
-                style={{
-                  fontFamily: "'IBM Plex Mono',monospace",
-                  fontSize: '12px',
-                  letterSpacing: '.1em',
-                  color: '#94592A',
-                  marginBottom: '8px',
-                }}
-              >
-                ENTERPRISE
-              </div>
-              <p style={{ margin: '0' }}>
-                Enterprise is quoted per customer. Price, limits and included features are agreed individually.
-              </p>
+            <h2
+              id="included-h"
+              style={{
+                margin: 0,
+                fontFamily: barlow,
+                fontWeight: 700,
+                fontSize: 'clamp(40px,5vw,64px)',
+                lineHeight: 0.95,
+              }}
+            >
+              This is what you get.
+            </h2>
+            <ul className="included">
+              {INCLUDED.map((f, i) => (
+                <li key={f.title}>
+                  <span style={{ fontFamily: mono, fontSize: '13px', color: '#94592A' }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <strong>{f.title}</strong>
+                  <span style={{ color: '#3A424F', fontSize: '15px' }}>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section aria-labelledby="addons-h" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div
+              style={{
+                borderTop: '2px solid #0D1116',
+                paddingTop: '12px',
+                fontFamily: mono,
+                fontSize: '13px',
+                letterSpacing: '.12em',
+                color: '#5A6270',
+              }}
+            >
+              <span id="addons-h">ADD-ONS</span>
             </div>
-            <div style={{ border: '1px solid #CFC8B8', borderRadius: '8px', background: '#FFFFFF', padding: '24px' }}>
-              <div
-                style={{
-                  fontFamily: "'IBM Plex Mono',monospace",
-                  fontSize: '12px',
-                  letterSpacing: '.1em',
-                  color: '#94592A',
-                  marginBottom: '8px',
-                }}
-              >
-                PLAN STATUS
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,280px),1fr))',
+                gap: '24px',
+              }}
+            >
+              <div className="addon">
+                <div style={tag}>EXTRA SEAT · ADVANCED</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                  <strong style={{ fontFamily: barlow, fontSize: '44px', lineHeight: 1 }}>{eur(EXTRA_SEAT)}</strong>
+                  <span style={{ fontSize: '15px', color: '#5A6270' }}>per seat / month</span>
+                </div>
+                <p style={{ margin: 0, color: '#3A424F' }}>
+                  Advanced includes one seat. Add a seat for each extra person who designs molds. Their own login, your
+                  company's workspace and limits.
+                </p>
               </div>
-              <p style={{ margin: '0' }}>
-                Several feature limits and Basic-plan inclusions are not decided yet. This overview reflects the current
-                draft.
-              </p>
             </div>
-          </div>
+          </section>
+
           <div
             style={{
               display: 'flex',

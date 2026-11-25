@@ -1,4 +1,4 @@
-.plans-table{display:grid;grid-template-columns:minmax(220px,1.35fr) repeat(5,minmax(150px,1fr));min-width:970px}
+.plans-table{display:grid;grid-template-columns:minmax(200px,1.2fr) repeat(4,minmax(170px,1fr));min-width:880px}
 .plan-feature,.plan-value{border-right:1px solid #CFC8B8;border-bottom:1px solid #CFC8B8;padding:16px 18px}
 .plan-feature{font-size:15px;color:#3A424F}
 .plan-value{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:14px}
@@ -14,5 +14,10 @@
 .plan-order{border-right:1px solid #CFC8B8;padding:20px 18px;display:flex;background:#F4F1EA}
 .plan-order .plan-cta{flex:1;margin:0}
 .plan-badge{align-self:flex-start;background:#94592A;color:#FFFFFF;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;padding:3px 8px;border-radius:3px}
+/* «This is what you get»: funktionerne er ens i alle planer, så de står som en liste og ikke som tabel. */
+.included{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));border-top:1px solid #0D1116;border-left:1px solid #0D1116}
+.included li{display:flex;flex-direction:column;gap:6px;padding:22px 24px;border-right:1px solid #0D1116;border-bottom:1px solid #0D1116;background:#FFFFFF}
+.included strong{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:26px;line-height:1.1}
+.addon{border:1px solid #CFC8B8;border-radius:8px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:10px}
 /* Var en nøgen main-regel på den statiske side; afgrænset, så den ikke rammer de andre sider. */
 @media(max-width:760px){.page-plans main{padding:40px 20px 72px!important}.plans-intro{grid-template-columns:1fr!important}}

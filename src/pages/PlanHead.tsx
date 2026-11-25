@@ -54,7 +54,7 @@ export function PlanHead({ plan, billing, last }: { plan: Plan; billing: Billing
       {yearly ? (
         <>
           <strong style={priceStyle}>{eur(yearlyMonthly(plan.price!))}</strong>
-          <span style={unitStyle}>per month, billed yearly</span>
+          <span style={unitStyle}>per seat / month, billed yearly</span>
           <span style={{ fontSize: '13px', color: '#5A6270' }}>
             <s>{eur(plan.price!)}</s> · {eur(yearlyMonthly(plan.price!) * 12)} a year ·{' '}
             <span style={{ color: '#2F7A45', fontWeight: 600 }}>−25%</span>

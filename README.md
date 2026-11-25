@@ -46,14 +46,12 @@ The order buttons on `/plans` pass the plan and billing period along, e.g. `/sig
 
 Without these settings the payment step shows a preview with a "Continue without paying (preview)" button, so the flow can be clicked through.
 
-1. In Stripe, create products **Basic** and **Advanced**, each with two recurring EUR prices:
+1. In Stripe, create two products, each with a monthly and a yearly recurring EUR price:
 
-   | Price | Amount |
-   |---|---|
-   | Basic monthly | €149 / month |
-   | Basic yearly | €1,332 / year |
-   | Advanced monthly | €249 / month |
-   | Advanced yearly | €2,232 / year |
+   | Product | Monthly | Yearly |
+   |---|---|---|
+   | Advanced (includes 1 seat) | €249 / month | €2,232 / year |
+   | Extra seat | €100 / month | €1,200 / year |
 
 2. In Vercel → Settings → Environment Variables, add:
 
@@ -61,13 +59,13 @@ Without these settings the payment step shows a preview with a "Continue without
    |---|---|
    | `VITE_STRIPE_PUBLISHABLE_KEY` | `pk_test_…` (shown in the browser) |
    | `STRIPE_SECRET_KEY` | `sk_test_…` (server only, never in the browser) |
-   | `STRIPE_PRICE_BASIC_MONTHLY`, `STRIPE_PRICE_BASIC_YEARLY`, `STRIPE_PRICE_ADVANCED_MONTHLY`, `STRIPE_PRICE_ADVANCED_YEARLY` | The `price_…` ids from step 1 |
+   | `STRIPE_PRICE_ADVANCED_MONTHLY`, `STRIPE_PRICE_ADVANCED_YEARLY`, `STRIPE_PRICE_SEAT_MONTHLY`, `STRIPE_PRICE_SEAT_YEARLY` | The `price_…` ids from step 1 |
    | `STRIPE_AUTOMATIC_TAX` | `true` once Stripe Tax is set up (adds Danish VAT and EU reverse charge) |
    | `VITE_APP_URL` | Address of the MoldAid app, used by the "Open MoldAid" buttons |
 
 3. Redeploy. Use Stripe test mode and test cards until everything works.
 
-Pay-per-use opens Checkout in setup mode: the card is saved and nothing is charged. Trial skips payment. Enterprise goes to the contact page.
+Checkout charges Advanced for one seat plus one Extra seat for each further person from the company step's headcount. Pay-per-use opens Checkout in setup mode: the card is saved and nothing is charged. Trial skips payment. Enterprise goes to the contact page.
 
 ## Not finished yet
 

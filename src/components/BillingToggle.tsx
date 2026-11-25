@@ -19,7 +19,7 @@ export function BillingToggle({ value, onChange, note = true }: Props) {
           </label>
         ))}
       </div>
-      {note && <span className="bill-note">Pay for 12 months up front and save 25% on Basic and Advanced.</span>}
+      {note && <span className="bill-note">Pay for 12 months up front and save 25% on Advanced.</span>}
     </div>
   );
 }

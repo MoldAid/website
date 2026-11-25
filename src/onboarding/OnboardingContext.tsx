@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { Billing, PlanId } from '../lib/pricing';
+import { isPlanId, type Billing, type PlanId } from '../lib/pricing';
 
 export type AuthMethod = 'email' | 'google' | 'microsoft';
 
@@ -43,7 +43,10 @@ const KEY = 'moldaid.onboarding.v1';
 function load(): OnboardingData {
   try {
     const raw = sessionStorage.getItem(KEY);
-    return raw ? { ...EMPTY, ...(JSON.parse(raw) as Partial<OnboardingData>) } : EMPTY;
+    if (!raw) return EMPTY;
+    const saved = { ...EMPTY, ...(JSON.parse(raw) as Partial<OnboardingData>) };
+    // En plan, der ikke findes mere (fx Basic), falder tilbage til Advanced.
+    return isPlanId(saved.plan) ? saved : { ...saved, plan: 'advanced' };
   } catch {
     return EMPTY;
   }
@@ -81,9 +84,9 @@ export function useOnboarding(): Ctx {
   return ctx;
 }
 
-/** Plan suggested from headcount: Advanced from 3 people up, Basic for 1–2. */
-export function suggestedPlan(headcount: number): PlanId {
-  return headcount >= 3 ? 'advanced' : 'basic';
+/** Foreslået plan. Med Basic væk (25-11-2026) er det altid Advanced; antal brugere bliver til pladser. */
+export function suggestedPlan(_headcount: number): PlanId {
+  return 'advanced';
 }
 
 /** Første trin, brugeren ikke har gjort færdigt. Bruges til at sende folk tilbage, hvis de springer frem. */

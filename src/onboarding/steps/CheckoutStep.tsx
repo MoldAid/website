@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router';
 import { loadStripe } from '@stripe/stripe-js';
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
-import { eur, eurCents, getPlan, quote, VAT_RATE_DK } from '../../lib/pricing';
+import { EXTRA_SEAT, eur, eurCents, getPlan, quote, VAT_RATE_DK } from '../../lib/pricing';
 import { OnboardingLayout } from '../OnboardingLayout';
 import { useOnboarding } from '../OnboardingContext';
 
@@ -32,7 +32,8 @@ export function CheckoutStep() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const plan = getPlan(data.plan);
-  const q = quote(plan, data.billing);
+  const q = quote(plan, data.billing, data.headcount);
+  const yearly = q.period === 'year';
   const setup = plan.id === 'payg';
 
   const fetchClientSecret = useCallback(async () => {
@@ -43,6 +44,7 @@ export function CheckoutStep() {
       body: JSON.stringify({
         plan: data.plan,
         billing: data.billing,
+        seats: data.headcount,
         email: data.email,
         name: data.name,
         companyName: data.companyName,
@@ -55,7 +57,7 @@ export function CheckoutStep() {
       throw new Error(msg);
     }
     return body.clientSecret;
-  }, [data.plan, data.billing, data.email, data.name, data.companyName]);
+  }, [data.plan, data.billing, data.headcount, data.email, data.name, data.companyName]);
 
   const options = useMemo(() => ({ fetchClientSecret }), [fetchClientSecret]);
 
@@ -92,7 +94,7 @@ export function CheckoutStep() {
           MoldAid {plan.name}
         </strong>
         <span style={{ color: '#C5CCD8' }}>
-          {data.companyName} · {data.headcount} {data.headcount === 1 ? 'user' : 'users'}
+          {data.companyName} · {data.headcount} {data.headcount === 1 ? 'seat' : 'seats'}
         </span>
       </div>
       {setup ? (
@@ -125,7 +127,7 @@ export function CheckoutStep() {
         </div>
       )}
       <ul className="ob-feat" style={{ color: '#D5DAE2' }}>
-        {plan.features.map((f) => (
+        {plan.highlights.map((f) => (
           <li key={f}>{f}</li>
         ))}
       </ul>
@@ -134,8 +136,17 @@ export function CheckoutStep() {
         <Row label="Due today" value={eurCents(0)} strong />
       ) : (
         <>
-          {q.discount > 0 && (
-            <Row label={`${plan.name}, 12 × ${eurCents(plan.price ?? 0)}`} value={eurCents(q.list)} muted />
+          <Row
+            label={`${plan.name}, 1 seat${yearly ? `, 12 × ${eurCents(plan.price ?? 0)}` : ''}`}
+            value={eurCents((plan.price ?? 0) * (yearly ? 12 : 1))}
+            muted
+          />
+          {q.extraSeats > 0 && (
+            <Row
+              label={`Extra seats, ${q.extraSeats} × ${eurCents(EXTRA_SEAT)}${yearly ? ' × 12' : ''}`}
+              value={eurCents(q.extraSeatsAmount)}
+              muted
+            />
           )}
           {q.discount > 0 && <Row label="Yearly discount" value={`−${eurCents(q.discount)}`} muted />}
           <Row label="Subtotal" value={eurCents(q.subtotal)} />

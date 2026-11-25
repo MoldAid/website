@@ -2,12 +2,13 @@ import type { ServerResponse } from 'node:http';
 import type Stripe from 'stripe';
 import { json, priceId, stripe, type Req } from './_stripe.js';
 
-type Body = { plan?: string; billing?: string; email?: string; name?: string; companyName?: string };
+type Body = { plan?: string; billing?: string; seats?: number; email?: string; name?: string; companyName?: string };
 
 /**
  * POST /api/checkout-session
  * Starter Stripe Embedded Checkout for den valgte plan og returnerer client_secret.
- * Basic/Advanced: abonnement (månedlig eller årlig pris). Pay-per-use: kortet gemmes, intet trækkes.
+ * Advanced: abonnement (månedlig eller årlig pris) med én plads inkluderet og ekstra pladser som egen linje.
+ * Pay-per-use: kortet gemmes, intet trækkes.
  */
 export default async function handler(req: Req, res: ServerResponse) {
   if (req.method !== 'POST') {
@@ -20,6 +21,7 @@ export default async function handler(req: Req, res: ServerResponse) {
   const body = (typeof req.body === 'string' ? JSON.parse(req.body) : (req.body ?? {})) as Body;
   const plan = body.plan ?? '';
   const billing = body.billing === 'monthly' ? 'monthly' : 'yearly';
+  const seats = Math.max(1, Math.min(999, Math.floor(Number(body.seats) || 1)));
   const email = (body.email ?? '').trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json(res, 400, { error: 'A valid email is required.' });
 
@@ -41,19 +43,24 @@ export default async function handler(req: Req, res: ServerResponse) {
       billing_address_collection: 'required',
       customer_update: { address: 'auto', name: 'auto' },
       tax_id_collection: { enabled: true },
-      metadata: { plan, billing },
+      metadata: { plan, billing, seats: String(seats) },
     } satisfies Partial<Stripe.Checkout.SessionCreateParams>;
 
     let params: Stripe.Checkout.SessionCreateParams;
-    if (plan === 'basic' || plan === 'advanced') {
+    if (plan === 'advanced') {
       const price = priceId(plan, billing);
-      if (!price) return json(res, 503, { error: `No Stripe price is configured for ${plan} (${billing}).` });
+      const seatPrice = priceId('seat', billing);
+      if (!price || (seats > 1 && !seatPrice))
+        return json(res, 503, { error: `No Stripe price is configured for ${plan} (${billing}).` });
+      // Én plads følger med planen; resten er tillægget «Extra seat», som kunden kan ændre i portalen.
+      const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [{ price, quantity: 1 }];
+      if (seats > 1 && seatPrice) lineItems.push({ price: seatPrice, quantity: seats - 1 });
       params = {
         ...common,
         mode: 'subscription',
-        line_items: [{ price, quantity: 1 }],
+        line_items: lineItems,
         allow_promotion_codes: true,
-        subscription_data: { metadata: { plan, billing } },
+        subscription_data: { metadata: { plan, billing, seats: String(seats) } },
         ...(process.env.STRIPE_AUTOMATIC_TAX === 'true' ? { automatic_tax: { enabled: true } } : {}),
       };
     } else if (plan === 'payg') {

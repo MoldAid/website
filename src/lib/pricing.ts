@@ -1,27 +1,34 @@
 /**
  * Én kilde til planer og priser: Plans-siden, plantrinnet og betalingen læser herfra.
  * Priser i hele euro, uden moms.
+ *
+ * Ejeren 25-11-2026: Basic er fjernet. Advanced koster €249 pr. måned for én plads (seat),
+ * hver ekstra plads €100 pr. måned. Alle planer har de samme funktioner; kun grænserne er forskellige.
  */
 
-export type PlanId = 'trial' | 'payg' | 'basic' | 'advanced' | 'enterprise';
+export type PlanId = 'trial' | 'payg' | 'advanced' | 'enterprise';
 export type Billing = 'monthly' | 'yearly';
 
 export type Plan = {
   id: PlanId;
   tag: string;
   name: string;
-  /** Månedspris for abonnementer, pris pr. form for pay-per-use. */
+  /** Månedspris for én plads (abonnement), pris pr. form for pay-per-use. */
   price: number | null;
   unit: string;
   blurb: string;
-  features: string[];
-  missing?: string[];
-  /** Kun abonnementer kan betales årligt. */
+  /** Korte punkter på plankortene i bestillingsflowet. */
+  highlights: string[];
+  /** Grænserne, der adskiller planerne. */
+  limits: { molds: string; storage: string; seats: string };
+  /** Kun abonnementer kan betales årligt og have ekstra pladser. */
   subscription: boolean;
 };
 
 export const YEARLY_DISCOUNT = 0.25;
 export const VAT_RATE_DK = 0.25;
+/** Ekstra plads på Advanced, pr. måned. Ingen årsrabat (ejeren angav kun €100). */
+export const EXTRA_SEAT = 100;
 
 export const PLANS: Plan[] = [
   {
@@ -30,9 +37,9 @@ export const PLANS: Plan[] = [
     name: 'Trial',
     price: 0,
     unit: '14 days',
-    blurb: 'Try every feature on one mold. No card needed.',
-    features: ['1 mold', 'All mold tools and flow check'],
-    missing: ['No job-file storage'],
+    blurb: 'Try everything on one mold. No card needed.',
+    highlights: ['1 mold', 'Every MoldAid tool', 'No job-file storage'],
+    limits: { molds: '1', storage: 'No storage', seats: '1' },
     subscription: false,
   },
   {
@@ -42,34 +49,24 @@ export const PLANS: Plan[] = [
     price: 149,
     unit: 'per mold',
     blurb: 'For the occasional mold. Pay only when you download.',
-    features: ['1 mold per purchase', 'All mold tools and flow check'],
-    missing: ['No job-file storage'],
+    highlights: ['1 mold per purchase', 'Every MoldAid tool', 'No job-file storage'],
+    limits: { molds: '1 per purchase', storage: 'No storage', seats: '1' },
     subscription: false,
-  },
-  {
-    id: 'basic',
-    tag: 'BASIC',
-    name: 'Basic',
-    price: 149,
-    unit: 'per month',
-    blurb: 'Mold builds for a small team that molds regularly.',
-    features: ['5 molds a month', 'Mold build, shell and cavity', 'Job files kept 1 month'],
-    missing: ['Parting, gating and flow check'],
-    subscription: true,
   },
   {
     id: 'advanced',
     tag: 'ADVANCED',
     name: 'Advanced',
     price: 249,
-    unit: 'per month',
-    blurb: 'Every tool, for teams that iterate on molds every week.',
-    features: [
-      '10 molds a month',
-      'All mold tools and flow check',
-      'Own materials and printers',
+    unit: 'per seat / month',
+    blurb: 'For teams that iterate on molds every month.',
+    highlights: [
+      '5 molds a month',
+      'Every MoldAid tool',
       'Job files kept 3 months',
+      `1 seat included, extra seats €${EXTRA_SEAT} / month`,
     ],
+    limits: { molds: '5 / month', storage: '3 months', seats: `1 included, extra €${EXTRA_SEAT} / month` },
     subscription: true,
   },
   {
@@ -79,9 +76,32 @@ export const PLANS: Plan[] = [
     price: null,
     unit: 'priced per customer',
     blurb: 'Custom limits, invoicing and onboarding.',
-    features: [],
+    highlights: [],
+    limits: { molds: 'By quote', storage: 'By quote', seats: 'By quote' },
     subscription: false,
   },
+];
+
+/** Det, alle planer får. Grupperne fra den tidligere sammenligningstabel. */
+export const INCLUDED: { title: string; text: string }[] = [
+  {
+    title: 'Mold build & shell',
+    text: 'STEP and STL files, shell settings, architecture, shrinkage and cavity options',
+  },
+  { title: 'Parting & cores', text: 'Parting direction and surface, parting details and cores' },
+  { title: 'Frame & assembly', text: 'Frame, chamfers, fused mold pieces, locking pins, dowels and nut field' },
+  {
+    title: 'Gating, runners & venting',
+    text: 'Gate types and path, runner section, custom runner path, vents and vacuum',
+  },
+  { title: 'Pins', text: 'Metal pins, guide pins and ejector pins' },
+  { title: 'Flow check & analysis', text: 'Flow check, thermal behavior, advisor, measurements and roughness' },
+  {
+    title: 'Materials, printers & machines',
+    text: 'Own materials and datasheets, own printers, printer compensation and molding machines',
+  },
+  { title: 'Print & cost', text: 'Print setup and requests, cost estimates and resin prices' },
+  { title: 'Sharing & account', text: 'Design sharing, viewer-paid downloads and two-factor login' },
 ];
 
 export function getPlan(id: PlanId): Plan {
@@ -102,48 +122,54 @@ export function yearlyMonthly(monthly: number): number {
 export type Quote = {
   /** Det, kunden betaler pr. periode uden moms. */
   subtotal: number;
-  /** Fuld pris uden rabat for samme periode (12 × månedspris ved årlig). */
+  /** Fuld pris uden årsrabat for samme periode. */
   list: number;
   discount: number;
+  /** Ekstra pladser i perioden (indgår i subtotal). */
+  extraSeats: number;
+  extraSeatsAmount: number;
   vat: number;
   total: number;
   period: 'month' | 'year' | 'mold' | null;
+  /** Hvad det svarer til pr. måned, alt inklusive. */
   perMonth: number | null;
 };
 
 /** Beløb til visning. Det endelige beløb og momsen beregnes af Stripe ved betaling. */
-export function quote(plan: Plan, billing: Billing): Quote {
+export function quote(plan: Plan, billing: Billing, seats = 1): Quote {
+  const none = { discount: 0, extraSeats: 0, extraSeatsAmount: 0 };
   if (plan.price === null || plan.price === 0) {
-    return { subtotal: 0, list: 0, discount: 0, vat: 0, total: 0, period: null, perMonth: null };
+    return { ...none, subtotal: 0, list: 0, vat: 0, total: 0, period: null, perMonth: null };
   }
   if (!plan.subscription) {
     const vat = plan.price * VAT_RATE_DK;
     return {
+      ...none,
       subtotal: plan.price,
       list: plan.price,
-      discount: 0,
       vat,
       total: plan.price + vat,
       period: 'mold',
       perMonth: null,
     };
   }
-  if (billing === 'yearly') {
-    const perMonth = yearlyMonthly(plan.price);
-    const subtotal = perMonth * 12;
-    const list = plan.price * 12;
-    const vat = subtotal * VAT_RATE_DK;
-    return { subtotal, list, discount: list - subtotal, vat, total: subtotal + vat, period: 'year', perMonth };
-  }
-  const vat = plan.price * VAT_RATE_DK;
+  const extraSeats = Math.max(0, seats - 1);
+  const months = billing === 'yearly' ? 12 : 1;
+  const base = billing === 'yearly' ? yearlyMonthly(plan.price) : plan.price;
+  const extraSeatsAmount = extraSeats * EXTRA_SEAT * months;
+  const subtotal = base * months + extraSeatsAmount;
+  const list = plan.price * months + extraSeatsAmount;
+  const vat = subtotal * VAT_RATE_DK;
   return {
-    subtotal: plan.price,
-    list: plan.price,
-    discount: 0,
+    subtotal,
+    list,
+    discount: list - subtotal,
+    extraSeats,
+    extraSeatsAmount,
     vat,
-    total: plan.price + vat,
-    period: 'month',
-    perMonth: plan.price,
+    total: subtotal + vat,
+    period: billing === 'yearly' ? 'year' : 'month',
+    perMonth: subtotal / months,
   };
 }
 
