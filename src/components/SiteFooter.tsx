@@ -1,63 +1,75 @@
 import { Link } from 'react-router';
 import { useConsent } from '../lib/consent';
+import './SiteFooter.css';
+
+// Kort sitemap: hvert punkt peger på en side eller en sektion på forsiden.
+const SITEMAP: { title: string; links: [string, string][] }[] = [
+  {
+    title: 'Product',
+    links: [
+      ['/#how', 'STEP to mold'],
+      ['/#who', 'Applications'],
+      ['/#need', 'Requirements'],
+      ['/#resources', 'Design rules'],
+    ],
+  },
+  {
+    title: 'Pricing',
+    links: [
+      ['/plans', 'Plans & pricing'],
+      ['/signup?plan=trial', 'Start free trial'],
+      ['/waitlist', 'Join the waitlist'],
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      ['/#team', 'Team'],
+      ['/#faq', 'FAQ'],
+      ['/contact', 'Contact'],
+      ['/login', 'Log in'],
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      ['/terms', 'Terms'],
+      ['/privacy', 'Privacy'],
+    ],
+  },
+];
 
 export function SiteFooter() {
   const { openSettings } = useConsent();
   return (
-    <>
-      <footer style={{ background: '#0B0F18', borderTop: '1px solid #2A3345', padding: '32px clamp(20px, 5vw, 80px)' }}>
-        <div
-          style={{
-            maxWidth: '1240px',
-            margin: '0 auto',
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            gap: '12px 48px',
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '13px',
-            lineHeight: '1.6',
-            color: '#A7B0BF',
-          }}
-        >
+    <footer className="site-footer">
+      <div className="site-footer-inner">
+        <nav className="sitemap" aria-label="Sitemap">
+          {SITEMAP.map((col) => (
+            <div key={col.title}>
+              <h2>{col.title}</h2>
+              <ul>
+                {col.links.map(([to, label]) => (
+                  <li key={to}>
+                    <Link to={to}>{label}</Link>
+                  </li>
+                ))}
+                {col.title === 'Legal' && (
+                  <li>
+                    <button type="button" onClick={openSettings}>
+                      Cookie settings
+                    </button>
+                  </li>
+                )}
+              </ul>
+            </div>
+          ))}
+        </nav>
+        <div className="site-footer-base">
+          <img src="/assets/brand/moldaid-mark.svg" alt="" width="24" height="24" />
           <span>MoldAid ApS · CVR DK12121212</span>
-          <div
-            style={{
-              marginLeft: 'auto',
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'flex-end',
-              gap: '8px 24px',
-            }}
-          >
-            <Link to="/terms" style={{ color: '#C5CCD8' }}>
-              Terms
-            </Link>
-            <Link to="/privacy" style={{ color: '#C5CCD8' }}>
-              Privacy
-            </Link>
-            <Link to="/contact" style={{ color: '#C5CCD8' }}>
-              Contact
-            </Link>
-            <button
-              type="button"
-              onClick={openSettings}
-              style={{
-                background: 'none',
-                border: 0,
-                padding: 0,
-                font: 'inherit',
-                color: '#C5CCD8',
-                textDecoration: 'underline',
-                cursor: 'pointer',
-              }}
-            >
-              Cookie settings
-            </button>
-          </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 }

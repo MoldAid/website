@@ -20,7 +20,7 @@ const Check = () => (
 
 type Props = {
   title: string;
-  /** 1–4 = aktivt trin, 5 = alle færdige. */
+  /** 1–4 = aktivt trin, 5 = alle færdige, 0 = ingen trinviser (log ind). */
   step: number;
   children: ReactNode;
   /** Fast bundlinje (plantrinnet). */
@@ -34,21 +34,25 @@ export function OnboardingLayout({ title, step, children, footer }: Props) {
         <Link to="/" aria-label="MoldAid home">
           <img src="/assets/brand/moldaid-logo-horizontal-light-bg.svg" alt="MoldAid" />
         </Link>
-        <ol className="ob-steps" aria-label="Sign-up progress">
-          {STEPS.map((name, i) => {
-            const n = i + 1;
-            const state = n < step ? 'done' : n === step ? 'current' : '';
-            return [
-              <li key={name} className={state} aria-current={n === step ? 'step' : undefined}>
-                <span className="ob-dot">{n < step ? <Check /> : `0${n}`}</span>
-                <span>{name}</span>
-              </li>,
-              n < STEPS.length && (
-                <li key={`${name}-line`} aria-hidden="true" className={`ob-line ${n < step ? 'done' : ''}`} />
-              ),
-            ];
-          })}
-        </ol>
+        {step > 0 ? (
+          <ol className="ob-steps" aria-label="Sign-up progress">
+            {STEPS.map((name, i) => {
+              const n = i + 1;
+              const state = n < step ? 'done' : n === step ? 'current' : '';
+              return [
+                <li key={name} className={state} aria-current={n === step ? 'step' : undefined}>
+                  <span className="ob-dot">{n < step ? <Check /> : `0${n}`}</span>
+                  <span>{name}</span>
+                </li>,
+                n < STEPS.length && (
+                  <li key={`${name}-line`} aria-hidden="true" className={`ob-line ${n < step ? 'done' : ''}`} />
+                ),
+              ];
+            })}
+          </ol>
+        ) : (
+          <span />
+        )}
         <Link className="ob-help" to="/contact">
           Need help?
         </Link>

@@ -10,8 +10,20 @@ const MENU: [string, string][] = [
   ['#need', 'Requirements'],
   ['#pricing', 'Pricing'],
   ['#resources', 'Design rules'],
-  ['#faq', 'FAQ'],
 ];
+
+const UserIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+    <circle cx="9" cy="6" r="3.2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+    <path
+      d="M2.8 16c.7-3.2 3.2-5 6.2-5s5.5 1.8 6.2 5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
 /**
  * Hvilken menusektion læseren er i. Linjen ligger lige under den faste top; den sektion, der krydser
@@ -35,7 +47,7 @@ function useActiveSection(header: React.RefObject<HTMLElement | null>) {
         const r = el.getBoundingClientRect();
         if (r.top <= line && r.bottom > line) found = href;
         // Helt nederst kan den sidste, korte sektion ikke nå linjen; så tæller den, hvis den er synlig.
-        if (atBottom && r.top < window.innerHeight) found = href;
+        if (atBottom && r.top < window.innerHeight && r.bottom > line) found = href;
       }
       setActive(found);
     };
@@ -84,7 +96,7 @@ export function HomeHeader() {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '16px 32px',
+            gap: '16px 24px',
           }}
         >
           <a
@@ -110,21 +122,26 @@ export function HomeHeader() {
               </a>
             ))}
           </nav>
-          <Link
-            className="nav-desktop"
-            to="/waitlist"
-            style={{
-              background: '#355F84',
-              color: '#FFFFFF',
-              textDecoration: 'none',
-              fontWeight: '600',
-              fontSize: '15px',
-              padding: '13px 22px',
-              borderRadius: '8px',
-            }}
-          >
-            Join the beta waitlist
-          </Link>
+          <div className="nav-desktop header-actions">
+            <Link className="login-link" to="/login">
+              <UserIcon />
+              Log in
+            </Link>
+            <Link
+              to="/waitlist"
+              style={{
+                background: '#355F84',
+                color: '#FFFFFF',
+                textDecoration: 'none',
+                fontWeight: '600',
+                fontSize: '15px',
+                padding: '13px 22px',
+                borderRadius: '8px',
+              }}
+            >
+              Join the beta waitlist
+            </Link>
+          </div>
           <details className="nav-mobile" ref={menu}>
             <summary
               style={{
@@ -193,6 +210,21 @@ export function HomeHeader() {
                   {label}
                 </a>
               ))}
+              <Link
+                to="/login"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  color: '#0D1116',
+                  textDecoration: 'none',
+                  padding: '15px 0',
+                  borderBottom: '1px solid #CFC8B8',
+                }}
+              >
+                <UserIcon />
+                Log in
+              </Link>
               <Link
                 to="/waitlist"
                 style={{

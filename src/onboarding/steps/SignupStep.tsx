@@ -4,7 +4,7 @@ import { isPlanId } from '../../lib/pricing';
 import { OnboardingLayout } from '../OnboardingLayout';
 import { useOnboarding, type AuthMethod } from '../OnboardingContext';
 
-const GoogleIcon = () => (
+export const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
     <path
       fill="#FFC107"
@@ -24,7 +24,7 @@ const GoogleIcon = () => (
     />
   </svg>
 );
-const MicrosoftIcon = () => (
+export const MicrosoftIcon = () => (
   <svg width="19" height="19" viewBox="0 0 21 21" aria-hidden="true">
     <rect x="1" y="1" width="9" height="9" fill="#F25022" />
     <rect x="11" y="1" width="9" height="9" fill="#7FBA00" />
@@ -121,7 +121,7 @@ export function SignupStep() {
           <div className="ob-strip">
             <span>Create account</span>
             <span>
-              Have one? <a href="#login">Log in</a>
+              Have one? <Link to="/login">Log in</Link>
             </span>
           </div>
           <div className="ob-body" style={{ gap: '20px' }}>

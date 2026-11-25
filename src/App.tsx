@@ -16,6 +16,7 @@ import { CompanyStep } from './onboarding/steps/CompanyStep';
 import { PlanStep } from './onboarding/steps/PlanStep';
 import { CheckoutStep } from './onboarding/steps/CheckoutStep';
 import { WelcomeStep } from './onboarding/steps/WelcomeStep';
+import { LoginPage } from './onboarding/LoginPage';
 
 export function App() {
   return (
@@ -29,6 +30,7 @@ export function App() {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/plans" element={<PlansPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupStep />} />
           <Route path="/signup/confirm" element={<ConfirmStep />} />
           <Route path="/onboarding" element={<Navigate to="/onboarding/company" replace />} />
