@@ -55,6 +55,31 @@ export function Pricing() {
             <p style={{ margin: '0', fontSize: '19px', color: '#C5CCD8' }}>
               Pay as you go - or choose one of our plans.
             </p>
+            <p
+              style={{
+                margin: '0',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                border: '1px solid #C98548',
+                borderRadius: '8px',
+                padding: '10px 16px',
+                fontSize: '17px',
+                color: '#F4F1EA',
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 14 14" aria-hidden="true" style={{ flexShrink: 0 }}>
+                <path
+                  d="M2.5 7.3l2.8 2.8 6-6.4"
+                  fill="none"
+                  stroke="#C98548"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Not sure yet? Start with a free 14-day trial. No card needed.
+            </p>
             <Link
               to="/plans"
               style={{

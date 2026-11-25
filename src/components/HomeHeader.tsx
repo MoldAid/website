@@ -56,7 +56,7 @@ export function HomeHeader() {
               What you need
             </a>
             <a href="#pricing" style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
-              Pricing
+              Get started
             </a>
             <a href="#faq" style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
               FAQ
@@ -173,7 +173,7 @@ export function HomeHeader() {
                   borderBottom: '1px solid #CFC8B8',
                 }}
               >
-                Pricing
+                Get started
               </a>
               <a
                 href="#faq"
