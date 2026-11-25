@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router';
-import { loadStripe } from '@stripe/stripe-js';
+// «pure» henter først Stripes script, når loadStripe kaldes; ellers indlæses det på alle sider.
+import { loadStripe } from '@stripe/stripe-js/pure';
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
 import { EXTRA_SEAT, eur, eurCents, getPlan, quote, VAT_RATE_DK } from '../../lib/pricing';
 import { OnboardingLayout } from '../OnboardingLayout';

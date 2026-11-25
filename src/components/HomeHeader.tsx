@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import './HomeHeader.css';
 
@@ -13,13 +13,66 @@ const MENU: [string, string][] = [
   ['#faq', 'FAQ'],
 ];
 
+/**
+ * Hvilken menusektion læseren er i. Linjen ligger lige under den faste top; den sektion, der krydser
+ * linjen, er aktiv. Mellem sektioner uden menupunkt (fx Team) er intet markeret.
+ * Efter et klik holdes det valgte punkt fast, mens siden glider derhen, så menuen ikke blinker forbi.
+ */
+function useActiveSection(header: React.RefObject<HTMLElement | null>) {
+  const [active, setActive] = useState<string | null>(null);
+  const lockUntil = useRef(0);
+
+  useEffect(() => {
+    // Seks målinger pr. scroll er billigt; React springer genrender over, når sektionen er den samme.
+    const measure = () => {
+      if (performance.now() < lockUntil.current) return;
+      const line = (header.current?.getBoundingClientRect().bottom ?? 0) + 24;
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      let found: string | null = null;
+      for (const [href] of MENU) {
+        const el = document.getElementById(href.slice(1));
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) found = href;
+        // Helt nederst kan den sidste, korte sektion ikke nå linjen; så tæller den, hvis den er synlig.
+        if (atBottom && r.top < window.innerHeight) found = href;
+      }
+      setActive(found);
+    };
+    const unlock = () => {
+      lockUntil.current = 0;
+      measure();
+    };
+    measure();
+    window.addEventListener('scroll', measure, { passive: true });
+    window.addEventListener('resize', measure);
+    window.addEventListener('scrollend', unlock);
+    return () => {
+      window.removeEventListener('scroll', measure);
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('scrollend', unlock);
+    };
+  }, [header]);
+
+  const choose = (href: string) => {
+    setActive(href);
+    // Browsere uden «scrollend» slipper låsen efter rulletiden.
+    lockUntil.current = performance.now() + 1200;
+  };
+
+  return { active, choose };
+}
+
 export function HomeHeader() {
   const menu = useRef<HTMLDetailsElement>(null);
+  const header = useRef<HTMLElement>(null);
   const closeMenu = () => menu.current?.removeAttribute('open');
+  const { active, choose } = useActiveSection(header);
 
   return (
     <>
       <header
+        ref={header}
         className="site-nav"
         style={{ padding: '18px clamp(20px, 5vw, 80px)', borderBottom: '1px solid #0D1116', background: '#F4F1EA' }}
       >
@@ -46,7 +99,13 @@ export function HomeHeader() {
           </a>
           <nav className="nav-desktop main-menu" aria-label="Main">
             {MENU.map(([href, label]) => (
-              <a key={href} href={href}>
+              <a
+                key={href}
+                href={href}
+                className={active === href ? 'active' : undefined}
+                aria-current={active === href ? 'location' : undefined}
+                onClick={() => choose(href)}
+              >
                 {label}
               </a>
             ))}
@@ -120,9 +179,12 @@ export function HomeHeader() {
                 <a
                   key={href}
                   href={href}
+                  aria-current={active === href ? 'location' : undefined}
+                  onClick={() => choose(href)}
                   style={{
                     display: 'block',
-                    color: '#0D1116',
+                    color: active === href ? '#94592A' : '#0D1116',
+                    fontWeight: active === href ? 600 : undefined,
                     textDecoration: 'none',
                     padding: '15px 0',
                     borderBottom: '1px solid #CFC8B8',
