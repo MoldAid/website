@@ -5,5 +5,14 @@
 .plan-head{border-right:1px solid #0D1116;border-bottom:1px solid #0D1116;padding:22px 18px;display:flex;flex-direction:column;gap:8px}
 .plan-group{grid-column:1/-1;background:#EAE5DA;border-top:1px solid #0D1116;border-bottom:1px solid #0D1116;padding:12px 18px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#94592A}
 .plan-scroll{overflow-x:auto;border:1px solid #0D1116;border-radius:8px;background:#FFFFFF}
+/* Bestil-knapperne (designet på lærredet, B · Plans & Pricing). */
+.plan-head{padding-bottom:20px}
+.plan-cta{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:auto;min-height:48px;padding:0 10px;white-space:nowrap;border-radius:8px;background:#355F84;color:#FFFFFF;text-decoration:none;font-family:'IBM Plex Sans',system-ui,sans-serif;font-weight:600;font-size:15px;text-align:center;box-shadow:0 6px 16px rgba(11,15,24,.14)}
+.plan-cta:hover{background:#2B4E6E;color:#FFFFFF}
+.plan-cta.hot{background:#B97335;color:#0B0F18}.plan-cta.hot:hover{background:#94592A;color:#FFFFFF}
+.plan-cta.line{background:#FFFFFF;color:#0D1116;border:1px solid #0D1116;box-shadow:none}.plan-cta.line:hover{background:#F4F1EA;color:#0D1116}
+.plan-order{border-right:1px solid #CFC8B8;padding:20px 18px;display:flex;background:#F4F1EA}
+.plan-order .plan-cta{flex:1;margin:0}
+.plan-badge{align-self:flex-start;background:#94592A;color:#FFFFFF;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;padding:3px 8px;border-radius:3px}
 /* Var en nøgen main-regel på den statiske side; afgrænset, så den ikke rammer de andre sider. */
 @media(max-width:760px){.page-plans main{padding:40px 20px 72px!important}.plans-intro{grid-template-columns:1fr!important}}

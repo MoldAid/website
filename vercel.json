@@ -10,7 +10,7 @@
     { "source": "/privacy.html", "destination": "/privacy", "permanent": false },
     { "source": "/plans.html", "destination": "/plans", "permanent": false }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
   "headers": [
     {
       "source": "/(.*)",

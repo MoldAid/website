@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
+import { BillingToggle } from '../components/BillingToggle';
+import { PLANS, type Billing } from '../lib/pricing';
+import { OrderButton, PlanHead } from './PlanHead';
 import { PageShell } from '../components/PageShell';
 import { SubpageHeader } from '../components/SubpageHeader';
 import { SiteFooter } from '../components/SiteFooter';
 import './plans.css';
 
 export function PlansPage() {
+  const [billing, setBilling] = useState<Billing>('yearly');
+
   return (
     <PageShell
       title="Plans & Pricing · MoldAid"
@@ -56,93 +62,19 @@ export function PlansPage() {
                 Compare the plans and limits currently available for the MoldAid product.
               </p>
               <p style={{ margin: '0', fontSize: '15px' }}>
-                Prices are in euro (<b>€</b>).
+                Prices are in euro (<b>€</b>), excluding VAT. Yearly prices are rounded down to whole euros.
               </p>
             </div>
+          </div>
+          <div style={{ marginBottom: '-24px' }}>
+            <BillingToggle value={billing} onChange={setBilling} />
           </div>
           <div className="plan-scroll" role="region" aria-label="MoldAid plan comparison" tabIndex={0}>
             <div className="plans-table">
               <div className="plan-head" style={{ background: '#F4F1EA' }}></div>
-              <div className="plan-head">
-                <div
-                  style={{
-                    fontFamily: "'IBM Plex Mono',monospace",
-                    fontSize: '12px',
-                    letterSpacing: '.1em',
-                    color: '#94592A',
-                  }}
-                >
-                  TRIAL
-                </div>
-                <strong style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '38px', lineHeight: '1' }}>
-                  Free
-                </strong>
-                <span style={{ fontSize: '14px', color: '#5A6270' }}>14 days</span>
-              </div>
-              <div className="plan-head">
-                <div
-                  style={{
-                    fontFamily: "'IBM Plex Mono',monospace",
-                    fontSize: '12px',
-                    letterSpacing: '.1em',
-                    color: '#94592A',
-                  }}
-                >
-                  PAY-PER-USE
-                </div>
-                <strong style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '38px', lineHeight: '1' }}>
-                  €149
-                </strong>
-                <span style={{ fontSize: '14px', color: '#5A6270' }}>per mold</span>
-              </div>
-              <div className="plan-head">
-                <div
-                  style={{
-                    fontFamily: "'IBM Plex Mono',monospace",
-                    fontSize: '12px',
-                    letterSpacing: '.1em',
-                    color: '#94592A',
-                  }}
-                >
-                  BASIC
-                </div>
-                <strong style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '38px', lineHeight: '1' }}>
-                  €149
-                </strong>
-                <span style={{ fontSize: '14px', color: '#5A6270' }}>per month</span>
-              </div>
-              <div className="plan-head">
-                <div
-                  style={{
-                    fontFamily: "'IBM Plex Mono',monospace",
-                    fontSize: '12px',
-                    letterSpacing: '.1em',
-                    color: '#94592A',
-                  }}
-                >
-                  ADVANCED
-                </div>
-                <strong style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '38px', lineHeight: '1' }}>
-                  €249
-                </strong>
-                <span style={{ fontSize: '14px', color: '#5A6270' }}>per month</span>
-              </div>
-              <div className="plan-head" style={{ borderRight: '0' }}>
-                <div
-                  style={{
-                    fontFamily: "'IBM Plex Mono',monospace",
-                    fontSize: '12px',
-                    letterSpacing: '.1em',
-                    color: '#94592A',
-                  }}
-                >
-                  ENTERPRISE
-                </div>
-                <strong style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '38px', lineHeight: '1' }}>
-                  Quote
-                </strong>
-                <span style={{ fontSize: '14px', color: '#5A6270' }}>priced per customer</span>
-              </div>
+              {PLANS.map((p, i) => (
+                <PlanHead key={p.id} plan={p} billing={billing} last={i === PLANS.length - 1} />
+              ))}
               <div className="plan-group">Limits</div>
               <div className="plan-feature">Molds</div>
               <div className="plan-value">1</div>
@@ -290,6 +222,14 @@ export function PlansPage() {
               <div className="plan-value">Not decided</div>
               <div className="plan-value">Not decided</div>
               <div className="plan-value">By quote</div>
+              <div className="plan-order" style={{ fontWeight: 600, alignItems: 'center' }}>
+                Ready? Pick a plan.
+              </div>
+              {PLANS.map((p, i) => (
+                <div key={p.id} className="plan-order" style={i === PLANS.length - 1 ? { borderRight: 0 } : undefined}>
+                  <OrderButton plan={p} billing={billing} />
+                </div>
+              ))}
             </div>
           </div>
           <div
