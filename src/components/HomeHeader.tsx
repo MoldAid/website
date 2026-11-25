@@ -2,6 +2,17 @@ import { useRef } from 'react';
 import { Link } from 'react-router';
 import './HomeHeader.css';
 
+// Menuen, i samme rækkefølge som sektionerne på forsiden. Ordene er valgt til ingeniører:
+// konkrete fagord frem for marketing-ord (25-11-2026).
+const MENU: [string, string][] = [
+  ['#how', 'STEP to mold'],
+  ['#who', 'Applications'],
+  ['#need', 'Requirements'],
+  ['#pricing', 'Pricing'],
+  ['#resources', 'Design rules'],
+  ['#faq', 'FAQ'],
+];
+
 export function HomeHeader() {
   const menu = useRef<HTMLDetailsElement>(null);
   const closeMenu = () => menu.current?.removeAttribute('open');
@@ -39,28 +50,18 @@ export function HomeHeader() {
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '8px 28px',
+              gap: '8px 24px',
               fontFamily: "'IBM Plex Mono', monospace",
               fontSize: '14px',
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
             }}
           >
-            <a href="#how" style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
-              How it works
-            </a>
-            <a href="#who" style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
-              Use cases
-            </a>
-            <a href="#need" style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
-              What you need
-            </a>
-            <a href="#pricing" style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
-              Get started
-            </a>
-            <a href="#faq" style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
-              FAQ
-            </a>
+            {MENU.map(([href, label]) => (
+              <a key={href} href={href} style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
+                {label}
+              </a>
+            ))}
           </nav>
           <Link
             className="nav-desktop"
@@ -127,66 +128,21 @@ export function HomeHeader() {
                 textTransform: 'uppercase',
               }}
             >
-              <a
-                href="#how"
-                style={{
-                  display: 'block',
-                  color: '#0D1116',
-                  textDecoration: 'none',
-                  padding: '15px 0',
-                  borderBottom: '1px solid #CFC8B8',
-                }}
-              >
-                How it works
-              </a>
-              <a
-                href="#who"
-                style={{
-                  display: 'block',
-                  color: '#0D1116',
-                  textDecoration: 'none',
-                  padding: '15px 0',
-                  borderBottom: '1px solid #CFC8B8',
-                }}
-              >
-                Use cases
-              </a>
-              <a
-                href="#need"
-                style={{
-                  display: 'block',
-                  color: '#0D1116',
-                  textDecoration: 'none',
-                  padding: '15px 0',
-                  borderBottom: '1px solid #CFC8B8',
-                }}
-              >
-                What you need
-              </a>
-              <a
-                href="#pricing"
-                style={{
-                  display: 'block',
-                  color: '#0D1116',
-                  textDecoration: 'none',
-                  padding: '15px 0',
-                  borderBottom: '1px solid #CFC8B8',
-                }}
-              >
-                Get started
-              </a>
-              <a
-                href="#faq"
-                style={{
-                  display: 'block',
-                  color: '#0D1116',
-                  textDecoration: 'none',
-                  padding: '15px 0',
-                  borderBottom: '1px solid #CFC8B8',
-                }}
-              >
-                FAQ
-              </a>
+              {MENU.map(([href, label]) => (
+                <a
+                  key={href}
+                  href={href}
+                  style={{
+                    display: 'block',
+                    color: '#0D1116',
+                    textDecoration: 'none',
+                    padding: '15px 0',
+                    borderBottom: '1px solid #CFC8B8',
+                  }}
+                >
+                  {label}
+                </a>
+              ))}
               <Link
                 to="/waitlist"
                 style={{
