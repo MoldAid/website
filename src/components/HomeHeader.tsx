@@ -44,21 +44,9 @@ export function HomeHeader() {
               style={{ display: 'block', height: '32px', width: 'auto', background: '#F4F1EA' }}
             />
           </a>
-          <nav
-            className="nav-desktop"
-            aria-label="Main"
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '8px 24px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '14px',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-            }}
-          >
+          <nav className="nav-desktop main-menu" aria-label="Main">
             {MENU.map(([href, label]) => (
-              <a key={href} href={href} style={{ color: '#0D1116', textDecoration: 'none', padding: '12px 0' }}>
+              <a key={href} href={href}>
                 {label}
               </a>
             ))}

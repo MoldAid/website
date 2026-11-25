@@ -3,3 +3,9 @@
 .nav-mobile summary::-webkit-details-marker{display:none}
 .nav-mobile[open] .ic-open,.nav-mobile:not([open]) .ic-close{display:none}
 @media (max-width: 1200px){.nav-desktop{display:none!important}.nav-mobile{display:block}}
+/* Topmenuen: almindelig tekst med tynde skillestreger, så punkterne ikke flyder sammen (25-11-2026). */
+.main-menu{display:flex;align-items:center;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:500}
+.main-menu a{position:relative;color:#0D1116;text-decoration:none;padding:10px 14px;border-radius:6px;white-space:nowrap}
+.main-menu a + a::before{content:"";position:absolute;left:0;top:50%;width:1px;height:16px;margin-top:-8px;background:#B8B0A0}
+.main-menu a:hover{background:#EAE5DA;color:#0D1116}
+.main-menu a:focus-visible{outline:2px solid #3578C9;outline-offset:2px}
