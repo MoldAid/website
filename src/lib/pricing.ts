@@ -21,6 +21,8 @@ export type Plan = {
   highlights: string[];
   /** Grænserne, der adskiller planerne. */
   limits: { molds: string; storage: string; seats: string };
+  /** Nummeret på lagringsnoten under tabellen. */
+  storageNote: number;
   /** Kun abonnementer kan betales årligt og have ekstra pladser. */
   subscription: boolean;
 };
@@ -44,9 +46,10 @@ export const PLANS: Plan[] = [
     highlights: ['1 mold', 'Every MoldAid tool', 'Download link valid 48 hours'],
     limits: {
       molds: '1',
-      storage: `Download link by email, open for 48 hours. Not saved in ${APP_NAME}.`,
+      storage: 'No',
       seats: '1',
     },
+    storageNote: 1,
     subscription: false,
   },
   {
@@ -59,9 +62,10 @@ export const PLANS: Plan[] = [
     highlights: ['1 mold per purchase', 'Every MoldAid tool', 'Download link valid 3 months'],
     limits: {
       molds: '1 per purchase',
-      storage: `Download link by email, open for 3 months. Not saved in ${APP_NAME}.`,
+      storage: 'No',
       seats: '1',
     },
+    storageNote: 2,
     subscription: false,
   },
   {
@@ -79,9 +83,10 @@ export const PLANS: Plan[] = [
     ],
     limits: {
       molds: '5 / month',
-      storage: `Download link by email. Every version saved in ${APP_NAME} while you subscribe.`,
+      storage: 'Yes',
       seats: `1 included, extra €${EXTRA_SEAT} / month`,
     },
+    storageNote: 3,
     subscription: true,
   },
   {
@@ -94,10 +99,30 @@ export const PLANS: Plan[] = [
     highlights: [],
     limits: {
       molds: 'By quote',
-      storage: `Download link by email. Every version saved in ${APP_NAME} while you subscribe.`,
+      storage: 'Yes',
       seats: 'By quote',
     },
+    storageNote: 3,
     subscription: false,
+  },
+];
+
+/** Noterne til «Storage» under plantabellen. Tabellen viser kun Yes/No. */
+export const STORAGE_NOTES: { n: number; plans: string; text: string }[] = [
+  {
+    n: 1,
+    plans: 'Trial',
+    text: `You get a download link by email. It works for 48 hours. Files are not saved in ${APP_NAME}.`,
+  },
+  {
+    n: 2,
+    plans: 'Pay-per-use',
+    text: `You get a download link by email. It works for 3 months. Files are not saved in ${APP_NAME}.`,
+  },
+  {
+    n: 3,
+    plans: 'Advanced and Enterprise',
+    text: `You get a download link by email. Every version of each mold is also saved in ${APP_NAME} for as long as you subscribe.`,
   },
 ];
 

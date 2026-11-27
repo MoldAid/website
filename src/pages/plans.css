@@ -19,7 +19,13 @@
 .included li{display:flex;flex-direction:column;gap:6px;padding:22px 24px;border-right:1px solid #0D1116;border-bottom:1px solid #0D1116;background:#FFFFFF}
 .included strong{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:26px;line-height:1.1}
 .addon{border:1px solid #CFC8B8;border-radius:8px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:10px}
-/* Lagring forklares i en kort sætning: venstrestillet brødtekst i stedet for mono. */
-.plan-value.plan-text{text-align:left;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:14px;line-height:1.45;color:#3A424F}
+/* Lagring: Yes/No i tabellen med en nummereret note under den. */
+.note-ref{font-size:11px;line-height:0;margin-left:2px}
+.note-ref a{color:#94592A;text-decoration:none;font-weight:600}
+.note-ref a:hover{text-decoration:underline}
+.plan-notes{margin:-24px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;color:#3A424F}
+.plan-notes li{display:flex;gap:10px;align-items:baseline;scroll-margin-top:96px}
+.plan-note-n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#94592A;min-width:12px}
+.plan-notes li:target{background:#EAE5DA;border-radius:4px}
 /* Var en nøgen main-regel på den statiske side; afgrænset, så den ikke rammer de andre sider. */
 @media(max-width:760px){.page-plans main{padding:40px 20px 72px!important}.plans-intro{grid-template-columns:1fr!important}}

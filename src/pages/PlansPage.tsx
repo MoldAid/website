@@ -4,7 +4,7 @@ import { PageShell } from '../components/PageShell';
 import { SubpageHeader } from '../components/SubpageHeader';
 import { SiteFooter } from '../components/SiteFooter';
 import { BillingToggle } from '../components/BillingToggle';
-import { EXTRA_SEAT, INCLUDED, PLANS, eur, type Billing, type Plan } from '../lib/pricing';
+import { EXTRA_SEAT, INCLUDED, PLANS, STORAGE_NOTES, eur, type Billing, type Plan } from '../lib/pricing';
 import { OrderButton, PlanHead } from './PlanHead';
 import './plans.css';
 
@@ -96,10 +96,17 @@ export function PlansPage() {
                 ...PLANS.map((p, i) => (
                   <div
                     key={`${row.key}-${p.id}`}
-                    className={row.key === 'storage' ? 'plan-value plan-text' : 'plan-value'}
+                    className="plan-value"
                     style={i === PLANS.length - 1 ? { borderRight: 0 } : undefined}
                   >
                     {p.limits[row.key]}
+                    {row.key === 'storage' && (
+                      <sup className="note-ref">
+                        <a href={`#storage-note-${p.storageNote}`} aria-label={`See storage note ${p.storageNote}`}>
+                          {p.storageNote}
+                        </a>
+                      </sup>
+                    )}
                   </div>
                 )),
               ])}
@@ -113,6 +120,17 @@ export function PlansPage() {
               ))}
             </div>
           </div>
+
+          <ol className="plan-notes" aria-label="Storage notes">
+            {STORAGE_NOTES.map((note) => (
+              <li key={note.n} id={`storage-note-${note.n}`}>
+                <span className="plan-note-n">{note.n}</span>
+                <span>
+                  <strong>{note.plans}:</strong> {note.text}
+                </span>
+              </li>
+            ))}
+          </ol>
 
           <section aria-labelledby="included-h" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div
