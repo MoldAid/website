@@ -83,7 +83,7 @@ export function Pricing() {
             <Link
               to="/plans"
               style={{
-                background: '#F4F1EA',
+                background: '#F2EADC',
                 color: '#0D1116',
                 textDecoration: 'none',
                 fontWeight: '600',

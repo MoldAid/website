@@ -1,5 +1,5 @@
 /* Fælles for alle sider. Sidespecifikke regler ligger ved deres komponent. */
-body{margin:0;background:#F4F1EA}
+body{margin:0;background:#F2EADC}
 @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 a{color:#355F84}a:hover{color:#0D1116}
 summary{cursor:pointer}

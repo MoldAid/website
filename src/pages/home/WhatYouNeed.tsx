@@ -45,7 +45,7 @@ export function WhatYouNeed() {
                   marginTop: '12px',
                   borderLeft: '0',
                   border: '1px solid #94592A',
-                  background: '#F4F1EA',
+                  background: '#F2EADC',
                   padding: '20px 22px',
                   fontSize: '16px',
                   color: '#3A424F',
@@ -68,7 +68,7 @@ export function WhatYouNeed() {
               </div>
             </div>
             <div
-              style={{ display: 'flex', flexDirection: 'column', border: '1px solid #0D1116', background: '#F4F1EA' }}
+              style={{ display: 'flex', flexDirection: 'column', border: '1px solid #0D1116', background: '#F2EADC' }}
             >
               <div
                 style={{

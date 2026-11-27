@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react';
 
 const paper: CSSProperties = {
-  backgroundColor: '#F4F1EA',
+  backgroundColor: '#F2EADC',
   backgroundImage:
     'linear-gradient(rgba(13, 17, 22, 0.032) 1px, transparent 1px), linear-gradient(90deg, rgba(13, 17, 22, 0.032) 1px, transparent 1px)',
   backgroundSize: '24px 24px',

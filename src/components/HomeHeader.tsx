@@ -86,7 +86,7 @@ export function HomeHeader() {
       <header
         ref={header}
         className="site-nav"
-        style={{ padding: '18px clamp(20px, 5vw, 80px)', borderBottom: '1px solid #0D1116', background: '#F4F1EA' }}
+        style={{ padding: '18px clamp(20px, 5vw, 80px)', borderBottom: '1px solid #0D1116', background: '#F2EADC' }}
       >
         <div
           style={{
@@ -106,7 +106,7 @@ export function HomeHeader() {
             <img
               src="/assets/brand/moldaid-logo-horizontal-light-bg.svg"
               alt="MoldAid"
-              style={{ display: 'block', height: '32px', width: 'auto', background: '#F4F1EA' }}
+              style={{ display: 'block', height: '32px', width: 'auto', background: '#F2EADC' }}
             />
           </a>
           <nav className="nav-desktop main-menu" aria-label="Main">
@@ -171,7 +171,7 @@ export function HomeHeader() {
                 left: '0',
                 right: '0',
                 top: '100%',
-                background: '#F4F1EA',
+                background: '#F2EADC',
                 borderBottom: '1px solid #0D1116',
                 padding: '4px clamp(20px, 5vw, 80px) 24px',
                 boxShadow: '0 16px 32px rgba(11, 15, 24, 0.12)',

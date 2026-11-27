@@ -156,7 +156,7 @@ export function WelcomeStep() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             border: '1px solid #0D1116',
             borderRadius: '8px',
-            background: '#F4F1EA',
+            background: '#F2EADC',
           }}
         >
           {facts.map(([k, v], i) => (

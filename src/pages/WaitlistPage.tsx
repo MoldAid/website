@@ -171,7 +171,7 @@ export function WaitlistPage() {
                       style={{
                         height: '50px',
                         boxSizing: 'border-box',
-                        background: '#F4F1EA',
+                        background: '#F2EADC',
                         border: '1px solid #5A6270',
                         borderRadius: '8px',
                         color: '#0D1116',
@@ -191,7 +191,7 @@ export function WaitlistPage() {
                       style={{
                         height: '50px',
                         boxSizing: 'border-box',
-                        background: '#F4F1EA',
+                        background: '#F2EADC',
                         border: '1px solid #5A6270',
                         borderRadius: '8px',
                         color: '#0D1116',
@@ -211,7 +211,7 @@ export function WaitlistPage() {
                       style={{
                         height: '50px',
                         boxSizing: 'border-box',
-                        background: '#F4F1EA',
+                        background: '#F2EADC',
                         border: '1px solid #5A6270',
                         borderRadius: '8px',
                         color: '#0D1116',
@@ -231,7 +231,7 @@ export function WaitlistPage() {
                       style={{
                         height: '50px',
                         boxSizing: 'border-box',
-                        background: '#F4F1EA',
+                        background: '#F2EADC',
                         border: '1px solid #5A6270',
                         borderRadius: '8px',
                         color: '#0D1116',
@@ -250,7 +250,7 @@ export function WaitlistPage() {
                     style={{
                       height: '50px',
                       boxSizing: 'border-box',
-                      background: '#F4F1EA',
+                      background: '#F2EADC',
                       border: '1px solid #5A6270',
                       borderRadius: '8px',
                       color: '#0D1116',
@@ -271,7 +271,7 @@ export function WaitlistPage() {
                     style={{
                       height: '50px',
                       boxSizing: 'border-box',
-                      background: '#F4F1EA',
+                      background: '#F2EADC',
                       border: '1px solid #5A6270',
                       borderRadius: '8px',
                       color: '#0D1116',
@@ -296,7 +296,7 @@ export function WaitlistPage() {
                     rows={4}
                     style={{
                       boxSizing: 'border-box',
-                      background: '#F4F1EA',
+                      background: '#F2EADC',
                       border: '1px solid #5A6270',
                       borderRadius: '8px',
                       color: '#0D1116',

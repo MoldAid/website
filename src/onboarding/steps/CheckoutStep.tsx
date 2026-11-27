@@ -207,7 +207,7 @@ export function CheckoutStep() {
           position: 'absolute',
           top: '-12px',
           left: '20px',
-          background: '#F4F1EA',
+          background: '#F2EADC',
           padding: '2px 10px',
           fontFamily: "'IBM Plex Mono', monospace",
           fontSize: '11px',

@@ -46,7 +46,7 @@ export function Team() {
               style={{
                 border: '1px solid #0D1116',
                 borderRadius: '8px',
-                background: '#F4F1EA',
+                background: '#F2EADC',
                 padding: '10px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -162,7 +162,7 @@ export function Team() {
               style={{
                 border: '1px solid #0D1116',
                 borderRadius: '8px',
-                background: '#F4F1EA',
+                background: '#F2EADC',
                 padding: '10px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -278,7 +278,7 @@ export function Team() {
               style={{
                 border: '1px solid #0D1116',
                 borderRadius: '8px',
-                background: '#F4F1EA',
+                background: '#F2EADC',
                 padding: '10px',
                 display: 'flex',
                 flexDirection: 'column',

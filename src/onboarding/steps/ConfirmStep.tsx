@@ -61,7 +61,7 @@ function CodeEntry({ email, onDone }: { email: string; onDone: () => void }) {
       </div>
       <div className="ob-body" style={{ padding: '40px 36px' }}>
         <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true">
-          <rect x="5" y="12" width="46" height="32" rx="5" fill="#F4F1EA" stroke="#0D1116" strokeWidth="1.6" />
+          <rect x="5" y="12" width="46" height="32" rx="5" fill="#F2EADC" stroke="#0D1116" strokeWidth="1.6" />
           <path d="M7 15l21 16 21-16" fill="none" stroke="#94592A" strokeWidth="1.8" strokeLinejoin="round" />
         </svg>
         <h2

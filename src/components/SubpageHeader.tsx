@@ -5,7 +5,7 @@ export function SubpageHeader() {
   return (
     <header
       className="site-nav"
-      style={{ padding: '18px clamp(20px, 5vw, 80px)', borderBottom: '1px solid #0D1116', background: '#F4F1EA' }}
+      style={{ padding: '18px clamp(20px, 5vw, 80px)', borderBottom: '1px solid #0D1116', background: '#F2EADC' }}
     >
       <div
         style={{
@@ -25,7 +25,7 @@ export function SubpageHeader() {
           <img
             src="/assets/brand/moldaid-logo-horizontal-light-bg.svg"
             alt="MoldAid"
-            style={{ display: 'block', height: '32px', width: 'auto', background: '#F4F1EA' }}
+            style={{ display: 'block', height: '32px', width: 'auto', background: '#F2EADC' }}
           />
         </Link>
         <Link

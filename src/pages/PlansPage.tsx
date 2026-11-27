@@ -84,7 +84,7 @@ export function PlansPage() {
 
           <div className="plan-scroll" role="region" aria-label="MoldAid Studio plan comparison" tabIndex={0}>
             <div className="plans-table">
-              <div className="plan-head" style={{ background: '#F4F1EA' }}></div>
+              <div className="plan-head" style={{ background: '#F2EADC' }}></div>
               {PLANS.map((p, i) => (
                 <PlanHead key={p.id} plan={p} billing={billing} last={i === PLANS.length - 1} />
               ))}
