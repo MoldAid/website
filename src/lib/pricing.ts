@@ -43,7 +43,7 @@ export const PLANS: Plan[] = [
     price: 0,
     unit: '14 days',
     blurb: 'Try everything on one mold. No card needed.',
-    highlights: ['1 mold', 'Every MoldAid tool', 'Download link valid 48 hours'],
+    highlights: ['1 mold', 'Every Mold Studio tool', 'Download link valid 48 hours'],
     limits: {
       molds: '1',
       storage: 'Limited',
@@ -59,7 +59,7 @@ export const PLANS: Plan[] = [
     price: 149,
     unit: 'per mold',
     blurb: 'For the occasional mold. Pay only when you download.',
-    highlights: ['1 mold per purchase', 'Every MoldAid tool', 'Download link valid 3 months'],
+    highlights: ['1 mold per purchase', 'Every Mold Studio tool', 'Download link valid 3 months'],
     limits: {
       molds: '1 per purchase',
       storage: 'Limited',
@@ -77,7 +77,7 @@ export const PLANS: Plan[] = [
     blurb: 'For teams that iterate on molds every month.',
     highlights: [
       '5 molds a month',
-      'Every MoldAid tool',
+      'Every Mold Studio tool',
       `Every mold version saved in ${APP_NAME}`,
       `1 seat included, extra seats €${EXTRA_SEAT} / month`,
     ],

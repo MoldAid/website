@@ -38,7 +38,7 @@ export function WhatYouNeed() {
                 Check your setup.
               </h2>
               <p style={{ margin: '0', fontSize: '19px', color: '#2A313C' }}>
-                MoldAid works with the equipment engineering teams already have. Our export formats are universal.
+                Mold Studio works with the equipment engineering teams already have. Our export formats are universal.
               </p>
               <div
                 style={{
@@ -63,7 +63,7 @@ export function WhatYouNeed() {
                 >
                   NOTE · USING YOUR OWN RESIN?
                 </strong>
-                Add its data and MoldAid estimates cost and flow for it. Without your data, the flow check uses default
+                Add its data and Mold Studio estimates cost and flow for it. Without your data, the flow check uses default
                 values and results are less accurate, and we can't estimate cost.
               </div>
             </div>
@@ -113,7 +113,7 @@ export function WhatYouNeed() {
                   PART SIZE
                 </div>
                 <div style={{ padding: '16px 18px' }}>
-                  Limited only by your printer. MoldAid checks that the mold fits before you print.
+                  Limited only by your printer. Mold Studio checks that the mold fits before you print.
                 </div>
               </div>
               <div
@@ -260,7 +260,7 @@ export function WhatYouNeed() {
                       </span>
                     </li>
                   </ul>
-                  <span>Using another material? Add its data and MoldAid uses it for the flow check.</span>
+                  <span>Using another material? Add its data and Mold Studio uses it for the flow check.</span>
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '170px minmax(0, 1fr)' }}>

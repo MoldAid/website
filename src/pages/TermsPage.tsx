@@ -84,7 +84,7 @@ export function TermsPage() {
                 </li>
                 <li>
                   <a href="#s2" style={{ color: '#355F84', textDecoration: 'none' }}>
-                    2. Using MoldAid
+                    2. Using Mold Studio
                   </a>
                 </li>
                 <li>
@@ -203,7 +203,7 @@ export function TermsPage() {
                   lineHeight: '1.1',
                 }}
               >
-                2. Using MoldAid
+                2. Using Mold Studio
               </h2>
               <p style={{ margin: '0' }}>
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam

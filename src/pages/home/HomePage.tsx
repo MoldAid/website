@@ -20,7 +20,7 @@ export function HomePage() {
   return (
     <PageShell
       title="MoldAid · Mold designs in minutes"
-      description="Upload your part as a STEP file. MoldAid turns it into a printable injection mold with split line, gate and vents."
+      description="Upload your part as a STEP file. Mold Studio turns it into a printable injection mold with split line, gate and vents."
     >
       <Announcement />
       <HomeHeader />

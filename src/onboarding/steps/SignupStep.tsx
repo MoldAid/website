@@ -98,7 +98,7 @@ export function SignupStep() {
           <h1 className="ob-h1">
             Create your
             <br />
-            MoldAid <em>account</em>.
+            Mold Studio <em>account</em>.
           </h1>
           <p className="ob-lead">
             Four short steps, about two minutes. Start on a free 14-day trial, or go straight to a paid plan.

@@ -50,7 +50,7 @@ export function ContactPage() {
                 Get in <span style={{ color: '#94592A' }}>touch</span>.
               </h1>
               <p style={{ margin: '0', fontSize: '20px', color: '#2A313C', maxWidth: '500px' }}>
-                Questions about MoldAid, the beta or working with us? Send a message and the team will get back to you.
+                Questions about Mold Studio, the beta or working with us? Send a message and the team will get back to you.
               </p>
               <div
                 style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #0D1116', maxWidth: '500px' }}
@@ -279,7 +279,7 @@ export function ContactPage() {
                     }}
                   >
                     <option>Choose one</option>
-                    <option>A question about MoldAid</option>
+                    <option>A question about Mold Studio</option>
                     <option>The private beta</option>
                     <option>Partnership</option>
                     <option>Press</option>

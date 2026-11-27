@@ -37,7 +37,7 @@ export function FinalCta() {
                 lineHeight: '1',
               }}
             >
-              Be first in line when MoldAid opens.
+              Be first in line when Mold Studio opens.
             </h2>
             <p style={{ margin: '0', fontSize: '18px', color: '#C5CCD8' }}>
               Early access and a launch discount for waitlist members.
