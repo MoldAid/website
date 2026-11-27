@@ -59,13 +59,13 @@ export const PLANS: Plan[] = [
     price: 149,
     unit: 'per mold',
     blurb: 'For the occasional mold. Pay only when you download.',
-    highlights: ['1 mold per purchase', 'Every Mold Studio tool', 'Download link valid 3 months'],
+    highlights: ['1 mold per purchase', 'Every Mold Studio tool', 'Download link valid 48 hours'],
     limits: {
       molds: '1 per purchase',
       storage: 'Limited',
       seats: '1',
     },
-    storageNote: 2,
+    storageNote: 1,
     subscription: false,
   },
   {
@@ -86,7 +86,7 @@ export const PLANS: Plan[] = [
       storage: 'Yes',
       seats: `1 included, extra €${EXTRA_SEAT} / month`,
     },
-    storageNote: 3,
+    storageNote: 2,
     subscription: true,
   },
   {
@@ -102,7 +102,7 @@ export const PLANS: Plan[] = [
       storage: 'Yes',
       seats: 'By quote',
     },
-    storageNote: 3,
+    storageNote: 2,
     subscription: false,
   },
 ];
@@ -111,16 +111,11 @@ export const PLANS: Plan[] = [
 export const STORAGE_NOTES: { n: number; plans: string; text: string }[] = [
   {
     n: 1,
-    plans: 'Trial',
+    plans: 'Trial and Pay-per-use',
     text: `You get a download link by email. It works for 48 hours. Files are not saved in ${APP_NAME}.`,
   },
   {
     n: 2,
-    plans: 'Pay-per-use',
-    text: `You get a download link by email. It works for 3 months. Files are not saved in ${APP_NAME}.`,
-  },
-  {
-    n: 3,
     plans: 'Advanced and Enterprise',
     text: `You get a download link by email. Every version of each mold is also saved in ${APP_NAME} for as long as you subscribe.`,
   },
