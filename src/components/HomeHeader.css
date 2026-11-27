@@ -11,6 +11,11 @@
 .main-menu a:focus-visible{outline:2px solid #3578C9;outline-offset:2px}
 @media (prefers-reduced-motion: reduce){.main-menu a{transition:none}}
 /* Log ind ved siden af ventelisteknappen. */
-.header-actions{display:flex;align-items:center;gap:16px}
-.login-link{display:inline-flex;align-items:center;gap:8px;color:#0D1116;text-decoration:none;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;padding:10px 4px}
-.login-link:hover{color:#94592A}
+.header-actions{display:flex;align-items:center;gap:8px}
+/* Log in og Register: samme skrift, størrelse og højde, så de står som et par. */
+.login-link,.register-btn{display:inline-flex;align-items:center;gap:8px;height:42px;box-sizing:border-box;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1;text-decoration:none;border-radius:8px}
+.login-link{color:#0D1116;padding:0 12px;border:1px solid transparent}
+.login-link:hover{border-color:#0D1116;color:#0D1116}
+.register-btn{background:#355F84;color:#FFFFFF;padding:0 20px;border:1px solid #355F84}
+.register-btn:hover{background:#2B4E6E;border-color:#2B4E6E;color:#FFFFFF}
+.login-link:focus-visible,.register-btn:focus-visible{outline:2px solid #3578C9;outline-offset:2px}

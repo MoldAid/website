@@ -127,19 +127,8 @@ export function HomeHeader() {
               <UserIcon />
               Log in
             </Link>
-            <Link
-              to="/waitlist"
-              style={{
-                background: '#355F84',
-                color: '#FFFFFF',
-                textDecoration: 'none',
-                fontWeight: '600',
-                fontSize: '15px',
-                padding: '13px 22px',
-                borderRadius: '8px',
-              }}
-            >
-              Join the beta waitlist
+            <Link className="register-btn" to="/plans">
+              Register
             </Link>
           </div>
           <details className="nav-mobile" ref={menu}>
@@ -226,7 +215,7 @@ export function HomeHeader() {
                 Log in
               </Link>
               <Link
-                to="/waitlist"
+                to="/plans"
                 style={{
                   display: 'block',
                   marginTop: '20px',
@@ -243,7 +232,7 @@ export function HomeHeader() {
                   borderRadius: '8px',
                 }}
               >
-                Join the beta waitlist
+                Register
               </Link>
             </nav>
           </details>
