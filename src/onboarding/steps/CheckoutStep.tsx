@@ -92,7 +92,7 @@ export function CheckoutStep() {
       </span>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
         <strong style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '44px', lineHeight: 1 }}>
-          Mold Studio {plan.name}
+          MoldAid Studio {plan.name}
         </strong>
         <span style={{ color: '#C5CCD8' }}>
           {data.companyName} · {data.headcount} {data.headcount === 1 ? 'seat' : 'seats'}

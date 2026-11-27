@@ -112,7 +112,7 @@ export function Hero() {
               not hours.
             </h1>
             <p style={{ margin: '8px 0 0', maxWidth: '520px', fontSize: '20px', lineHeight: '1.5', color: '#D5DAE2' }}>
-              Upload your part as a STEP file. Mold Studio turns it into a printable injection mold with split line, gate
+              Upload your part as a STEP file. MoldAid Studio turns it into a printable injection mold with split line, gate
               and vents, ready for your own printer and molding machine.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>

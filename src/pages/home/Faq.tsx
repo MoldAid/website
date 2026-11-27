@@ -40,9 +40,9 @@ export function Faq() {
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #0D1116' }}>
               <details style={{ borderBottom: '1px solid #0D1116', padding: '20px 0' }}>
-                <summary style={{ fontWeight: '600', fontSize: '19px' }}>Can I use Mold Studio today?</summary>
+                <summary style={{ fontWeight: '600', fontSize: '19px' }}>Can I use MoldAid Studio today?</summary>
                 <p style={{ margin: '12px 0 0', color: '#3A424F' }}>
-                  Mold Studio is in private beta. Public release is January 2027. Try our studio to get early access.
+                  MoldAid Studio is in private beta. Public release is January 2027. Try our studio to get early access.
                 </p>
               </details>
               <details style={{ borderBottom: '1px solid #0D1116', padding: '20px 0' }}>
@@ -50,7 +50,7 @@ export function Faq() {
                   Do I need my own printer and molding machine?
                 </summary>
                 <p style={{ margin: '12px 0 0', color: '#3A424F' }}>
-                  Mold Studio is built for teams that print and mold in-house. If you don't have the equipment, tell us when
+                  MoldAid Studio is built for teams that print and mold in-house. If you don't have the equipment, tell us when
                   you sign up and we'll help.
                 </p>
               </details>
@@ -64,7 +64,7 @@ export function Faq() {
               <details style={{ borderBottom: '1px solid #0D1116', padding: '20px 0' }}>
                 <summary style={{ fontWeight: '600', fontSize: '19px' }}>Can I use my own resin?</summary>
                 <p style={{ margin: '12px 0 0', color: '#3A424F' }}>
-                  Yes. Add your resin's data and Mold Studio uses it for the flow check and cost estimate. Two resins are
+                  Yes. Add your resin's data and MoldAid Studio uses it for the flow check and cost estimate. Two resins are
                   built in if you don't have your own.
                 </p>
               </details>

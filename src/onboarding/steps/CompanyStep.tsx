@@ -127,7 +127,7 @@ export function CompanyStep() {
             </fieldset>
             <div className="ob-field">
               <label htmlFor="co-head" className="ob-label">
-                Headcount <small>(people who will use Mold Studio)</small>
+                Headcount <small>(people who will use MoldAid Studio)</small>
               </label>
               <div className="ob-stepper">
                 <button type="button" aria-label="Fewer people" onClick={() => setCount(headcount - 1)}>

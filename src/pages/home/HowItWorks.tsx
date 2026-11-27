@@ -58,7 +58,7 @@ export function HowItWorks() {
           >
             <YouTubeEmbed
               videoId="wGL-rpac7zM"
-              title="Lasse G Staal shows Mold Studio"
+              title="Lasse G Staal shows MoldAid Studio"
               style={{
                 position: 'relative',
                 display: 'block',
@@ -160,7 +160,7 @@ export function HowItWorks() {
                       color: '#F4F1EA',
                     }}
                   >
-                    Lasse G Staal shows Mold Studio
+                    Lasse G Staal shows MoldAid Studio
                   </span>
                 </span>
                 <span
@@ -269,7 +269,7 @@ export function HowItWorks() {
                       color: '#A7B0BF',
                     }}
                   >
-                    Mold Studio · Upload
+                    MoldAid Studio · Upload
                   </span>
                   <span
                     style={{
@@ -477,7 +477,7 @@ export function HowItWorks() {
                       color: '#A7B0BF',
                     }}
                   >
-                    Mold Studio · Check
+                    MoldAid Studio · Check
                   </span>
                   <span
                     style={{
@@ -720,7 +720,7 @@ export function HowItWorks() {
                       color: '#A7B0BF',
                     }}
                   >
-                    Mold Studio · Mold design
+                    MoldAid Studio · Mold design
                   </span>
                   <span
                     style={{

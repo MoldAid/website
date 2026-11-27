@@ -36,7 +36,7 @@ function NextCard({ num, title, text, path }: { num: string; title: string; text
       </h3>
       <p style={{ margin: 0, color: '#3A424F', flex: 1 }}>{text}</p>
       <a className="ob-btn" href={APP_URL === '#' ? '#' : `${APP_URL}${path}`} style={{ alignSelf: 'flex-start' }}>
-        Open Mold Studio
+        Open MoldAid Studio
       </a>
     </div>
   );
@@ -134,7 +134,7 @@ export function WelcomeStep() {
             </svg>
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <div className="ob-eyebrow">Welcome to Mold Studio</div>
+            <div className="ob-eyebrow">Welcome to MoldAid Studio</div>
             <h1 className="ob-h1" style={{ fontSize: 'clamp(56px, 7vw, 100px)' }}>
               You're all <em>set</em>, {first}.
             </h1>
@@ -190,7 +190,7 @@ export function WelcomeStep() {
           <NextCard
             num="01"
             title="Upload your first part"
-            text="Drop a STEP file and Mold Studio suggests split line, gate and vents."
+            text="Drop a STEP file and MoldAid Studio suggests split line, gate and vents."
             path="/upload"
           />
           <NextCard
@@ -206,13 +206,13 @@ export function WelcomeStep() {
           <NextCard
             num="03"
             title="Add your printer and resin"
-            text="Mold Studio compensates for your printer and uses your resin data in the flow check."
+            text="MoldAid Studio compensates for your printer and uses your resin data in the flow check."
             path="/equipment"
           />
         </div>
         {plan.id !== 'trial' && (
           <p style={{ margin: 0, color: '#5A6270', fontSize: '15px' }}>
-            Change plan, update your card or download invoices any time under Settings → Billing in Mold Studio.
+            Change plan, update your card or download invoices any time under Settings → Billing in MoldAid Studio.
           </p>
         )}
       </div>

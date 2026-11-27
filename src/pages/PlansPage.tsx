@@ -24,7 +24,7 @@ export function PlansPage() {
   return (
     <PageShell
       title="Plans & Pricing · MoldAid"
-      description="Compare Mold Studio plans and limits. Every plan includes the full mold toolset."
+      description="Compare MoldAid Studio plans and limits. Every plan includes the full mold toolset."
       className="page-plans"
     >
       <SubpageHeader />
@@ -69,7 +69,7 @@ export function PlansPage() {
             </div>
             <div style={{ borderLeft: '1px solid #0D1116', paddingLeft: '24px', color: '#3A424F' }}>
               <p style={{ margin: '0 0 12px' }}>
-                Every plan includes the full Mold Studio toolset. The plans differ only in how many molds you make, how long
+                Every plan includes the full MoldAid Studio toolset. The plans differ only in how many molds you make, how long
                 we keep your files and how many people use it.
               </p>
               <p style={{ margin: '0', fontSize: '15px' }}>
@@ -82,7 +82,7 @@ export function PlansPage() {
             <BillingToggle value={billing} onChange={setBilling} note={false} />
           </div>
 
-          <div className="plan-scroll" role="region" aria-label="Mold Studio plan comparison" tabIndex={0}>
+          <div className="plan-scroll" role="region" aria-label="MoldAid Studio plan comparison" tabIndex={0}>
             <div className="plans-table">
               <div className="plan-head" style={{ background: '#F4F1EA' }}></div>
               {PLANS.map((p, i) => (

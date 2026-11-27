@@ -6,7 +6,7 @@ export function WaitlistPage() {
   return (
     <PageShell
       title="Join the waitlist · MoldAid"
-      description="Join the Mold Studio private beta waitlist. Early access before public release in January 2027."
+      description="Join the MoldAid Studio private beta waitlist. Early access before public release in January 2027."
       style={{ minHeight: '1120px', boxSizing: 'border-box', padding: '0 0 80px' }}
     >
       <SubpageHeader />
@@ -48,7 +48,7 @@ export function WaitlistPage() {
                   color: '#0D1116',
                 }}
               >
-                Join the <span style={{ whiteSpace: 'nowrap' }}>Mold Studio</span>
+                Join the <span style={{ whiteSpace: 'nowrap' }}>MoldAid Studio</span>
                 <br />
                 <span style={{ color: '#94592A' }}>waitlist</span>.
               </h1>
@@ -288,7 +288,7 @@ export function WaitlistPage() {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label htmlFor="bw-why" style={{ fontWeight: '600', fontSize: '15px' }}>
-                    Why are you interested in Mold Studio?{' '}
+                    Why are you interested in MoldAid Studio?{' '}
                     <span style={{ fontWeight: '400', color: '#5A6270' }}>(optional)</span>
                   </label>
                   <textarea
