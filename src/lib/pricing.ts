@@ -46,7 +46,7 @@ export const PLANS: Plan[] = [
     highlights: ['1 mold', 'Every MoldAid tool', 'Download link valid 48 hours'],
     limits: {
       molds: '1',
-      storage: 'No',
+      storage: 'Limited',
       seats: '1',
     },
     storageNote: 1,
@@ -62,7 +62,7 @@ export const PLANS: Plan[] = [
     highlights: ['1 mold per purchase', 'Every MoldAid tool', 'Download link valid 3 months'],
     limits: {
       molds: '1 per purchase',
-      storage: 'No',
+      storage: 'Limited',
       seats: '1',
     },
     storageNote: 2,
