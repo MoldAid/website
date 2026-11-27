@@ -218,9 +218,9 @@ export function PlansPage() {
               paddingTop: '24px',
             }}
           >
-            <p style={{ margin: '0', color: '#3A424F' }}>Want early access while plans are finalized?</p>
+            <p style={{ margin: '0', color: '#3A424F' }}>Ready to get started?</p>
             <Link
-              to="/waitlist"
+              to="/signup"
               style={{
                 background: '#355F84',
                 color: '#FFFFFF',
@@ -230,7 +230,7 @@ export function PlansPage() {
                 borderRadius: '8px',
               }}
             >
-              Join the beta waitlist
+              Register
             </Link>
           </div>
         </div>

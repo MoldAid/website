@@ -40,10 +40,10 @@ export function FinalCta() {
               Be first in line when Mold Studio opens.
             </h2>
             <p style={{ margin: '0', fontSize: '18px', color: '#C5CCD8' }}>
-              Early access and a launch discount for waitlist members.
+              Pick a plan, or start with a free 14-day trial.
             </p>
             <Link
-              to="/waitlist"
+              to="/plans"
               style={{
                 background: '#B97335',
                 color: '#0B0F18',
@@ -54,7 +54,7 @@ export function FinalCta() {
                 borderRadius: '8px',
               }}
             >
-              Join the beta waitlist
+              Register
             </Link>
           </div>
           <address

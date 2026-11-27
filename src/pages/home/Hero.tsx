@@ -117,7 +117,7 @@ export function Hero() {
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
               <Link
-                to="/waitlist"
+                to="/plans"
                 style={{
                   background: '#B97335',
                   color: '#0B0F18',
@@ -127,7 +127,7 @@ export function Hero() {
                   borderRadius: '8px',
                 }}
               >
-                Join the beta waitlist
+                Register
               </Link>
               <a
                 href="#how"

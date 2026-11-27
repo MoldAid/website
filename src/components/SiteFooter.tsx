@@ -18,7 +18,6 @@ const SITEMAP: { title: string; links: [string, string][] }[] = [
     links: [
       ['/plans', 'Plans & pricing'],
       ['/signup?plan=trial', 'Start free trial'],
-      ['/waitlist', 'Join the waitlist'],
     ],
   },
   {

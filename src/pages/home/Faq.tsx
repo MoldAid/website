@@ -42,7 +42,7 @@ export function Faq() {
               <details style={{ borderBottom: '1px solid #0D1116', padding: '20px 0' }}>
                 <summary style={{ fontWeight: '600', fontSize: '19px' }}>Can I use Mold Studio today?</summary>
                 <p style={{ margin: '12px 0 0', color: '#3A424F' }}>
-                  Mold Studio is in private beta. Public release is January 2027. Join the waitlist for early access.
+                  Mold Studio is in private beta. Public release is January 2027. Register to get early access.
                 </p>
               </details>
               <details style={{ borderBottom: '1px solid #0D1116', padding: '20px 0' }}>
