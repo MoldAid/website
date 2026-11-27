@@ -14,7 +14,7 @@ const tag = { fontFamily: mono, fontSize: '12px', letterSpacing: '.1em', color: 
 
 const LIMITS: { label: string; key: keyof Plan['limits'] }[] = [
   { label: 'Molds', key: 'molds' },
-  { label: 'Storage of job files', key: 'storage' },
+  { label: 'Storage', key: 'storage' },
   { label: 'Seats', key: 'seats' },
 ];
 
@@ -96,7 +96,7 @@ export function PlansPage() {
                 ...PLANS.map((p, i) => (
                   <div
                     key={`${row.key}-${p.id}`}
-                    className="plan-value"
+                    className={row.key === 'storage' ? 'plan-value plan-text' : 'plan-value'}
                     style={i === PLANS.length - 1 ? { borderRight: 0 } : undefined}
                   >
                     {p.limits[row.key]}

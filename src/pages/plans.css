@@ -19,5 +19,7 @@
 .included li{display:flex;flex-direction:column;gap:6px;padding:22px 24px;border-right:1px solid #0D1116;border-bottom:1px solid #0D1116;background:#FFFFFF}
 .included strong{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:26px;line-height:1.1}
 .addon{border:1px solid #CFC8B8;border-radius:8px;background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:10px}
+/* Lagring forklares i en kort sætning: venstrestillet brødtekst i stedet for mono. */
+.plan-value.plan-text{text-align:left;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:14px;line-height:1.45;color:#3A424F}
 /* Var en nøgen main-regel på den statiske side; afgrænset, så den ikke rammer de andre sider. */
 @media(max-width:760px){.page-plans main{padding:40px 20px 72px!important}.plans-intro{grid-template-columns:1fr!important}}

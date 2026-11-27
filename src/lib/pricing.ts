@@ -25,6 +25,9 @@ export type Plan = {
   subscription: boolean;
 };
 
+/** Arbejdsnavn på appen. Skift her, når det endelige navn er besluttet. */
+export const APP_NAME = 'Mold Studio';
+
 export const YEARLY_DISCOUNT = 0.25;
 export const VAT_RATE_DK = 0.25;
 /** Ekstra plads på Advanced, pr. måned. Ingen årsrabat (ejeren angav kun €100). */
@@ -38,8 +41,12 @@ export const PLANS: Plan[] = [
     price: 0,
     unit: '14 days',
     blurb: 'Try everything on one mold. No card needed.',
-    highlights: ['1 mold', 'Every MoldAid tool', 'No job-file storage'],
-    limits: { molds: '1', storage: 'No storage', seats: '1' },
+    highlights: ['1 mold', 'Every MoldAid tool', 'Download link valid 48 hours'],
+    limits: {
+      molds: '1',
+      storage: `Download link by email, open for 48 hours. Not saved in ${APP_NAME}.`,
+      seats: '1',
+    },
     subscription: false,
   },
   {
@@ -49,8 +56,12 @@ export const PLANS: Plan[] = [
     price: 149,
     unit: 'per mold',
     blurb: 'For the occasional mold. Pay only when you download.',
-    highlights: ['1 mold per purchase', 'Every MoldAid tool', 'No job-file storage'],
-    limits: { molds: '1 per purchase', storage: 'No storage', seats: '1' },
+    highlights: ['1 mold per purchase', 'Every MoldAid tool', 'Download link valid 3 months'],
+    limits: {
+      molds: '1 per purchase',
+      storage: `Download link by email, open for 3 months. Not saved in ${APP_NAME}.`,
+      seats: '1',
+    },
     subscription: false,
   },
   {
@@ -63,10 +74,14 @@ export const PLANS: Plan[] = [
     highlights: [
       '5 molds a month',
       'Every MoldAid tool',
-      'Job files kept 3 months',
+      `Every mold version saved in ${APP_NAME}`,
       `1 seat included, extra seats €${EXTRA_SEAT} / month`,
     ],
-    limits: { molds: '5 / month', storage: '3 months', seats: `1 included, extra €${EXTRA_SEAT} / month` },
+    limits: {
+      molds: '5 / month',
+      storage: `Download link by email. Every version saved in ${APP_NAME} while you subscribe.`,
+      seats: `1 included, extra €${EXTRA_SEAT} / month`,
+    },
     subscription: true,
   },
   {
@@ -77,7 +92,11 @@ export const PLANS: Plan[] = [
     unit: 'priced per customer',
     blurb: 'Custom limits, invoicing and onboarding.',
     highlights: [],
-    limits: { molds: 'By quote', storage: 'By quote', seats: 'By quote' },
+    limits: {
+      molds: 'By quote',
+      storage: `Download link by email. Every version saved in ${APP_NAME} while you subscribe.`,
+      seats: 'By quote',
+    },
     subscription: false,
   },
 ];
