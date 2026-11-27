@@ -230,7 +230,7 @@ export function PlansPage() {
                 borderRadius: '8px',
               }}
             >
-              Register
+              Try our studio
             </Link>
           </div>
         </div>

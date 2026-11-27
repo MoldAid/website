@@ -128,7 +128,7 @@ export function HomeHeader() {
               Log in
             </Link>
             <Link className="register-btn" to="/plans">
-              Register
+              Try our studio
             </Link>
           </div>
           <details className="nav-mobile" ref={menu}>
@@ -232,7 +232,7 @@ export function HomeHeader() {
                   borderRadius: '8px',
                 }}
               >
-                Register
+                Try our studio
               </Link>
             </nav>
           </details>

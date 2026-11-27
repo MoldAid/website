@@ -127,7 +127,7 @@ export function Hero() {
                   borderRadius: '8px',
                 }}
               >
-                Register
+                Try our studio
               </Link>
               <a
                 href="#how"

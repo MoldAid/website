@@ -54,7 +54,7 @@ export function FinalCta() {
                 borderRadius: '8px',
               }}
             >
-              Register
+              Try our studio
             </Link>
           </div>
           <address
